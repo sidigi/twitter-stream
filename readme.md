@@ -17,6 +17,7 @@
 
 4) `composer install`
 5) `php artisan migrate:refresh --seed`
+7) `php artisan shedule:run` - апуск задач из командной строки или `* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1` - на крон
 6) `/login` для менеджера (кто модерирует твиты)
 
 * email: manager@manager.com
