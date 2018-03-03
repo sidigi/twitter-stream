@@ -47,7 +47,7 @@ class ListenForHashTags extends Command
                         'approved' => 0
                     ]);
 
-                    var_dump('added tweet with id' . $tweet['id']);
+                    var_dump('|**************** added tweet with id' . $tweet['id']. '************|');
                 }
             })
             ->startListening();
