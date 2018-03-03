@@ -1,11 +1,11 @@
 1) Создать приложение twitter app
 2) Заполнить в env
-TWITTER_ACCESS_TOKEN
-TWITTER_ACCESS_TOKEN_SECRET
-TWITTER_CONSUMER_KEY
-TWITTER_CONSUMER_SECRET
 
-QUEUE_DRIVER=database
+* TWITTER_ACCESS_TOKEN
+* TWITTER_ACCESS_TOKEN_SECRET
+* TWITTER_CONSUMER_KEY
+* TWITTER_CONSUMER_SECRET
+* QUEUE_DRIVER=database
 
 3) Заполнить в `config/laravel-twitter-streaming-api.php` хештеги
 ```php
