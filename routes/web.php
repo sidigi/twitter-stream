@@ -34,9 +34,16 @@ Route::get('/', function () {
             }
         });
 
-        $mainTweet = $tweets->shift();
+        $mainTweet = $subTweet = null;
 
-        return view('welcome', compact('tweets', 'mainTweet'));
+        if ($tweets){
+            $mainTweet = $tweets->shift();
+        }
+        if ($tweets){
+            $subTweet = $tweets->shift();
+        }
+
+        return view('welcome', compact('tweets', 'mainTweet', 'subTweet'));
     }
 });
 
