@@ -9,8 +9,10 @@
 				<label class="form-check-label" for="auto-reload">Auto reload</label>
 			</div>
 		</div>
-		<div class="col-xs-2">
-			<input type="number" class="form-control seconds" id="exampleInputPassword1" placeholder="Seconds" value="5">
+		<div class="col-xs-3">
+			<label for="">Seconds
+				<input type="number" class="form-control seconds" id="exampleInputPassword1" placeholder="Seconds" value="5">
+			</label>
 		</div>
 	</div>
 </div>
@@ -97,8 +99,8 @@
             }
         }, seconds * 1000);
 
-        $(document).on('change', '.seconds', function(event){
-            seconds = $(this).val();
+        $(document).on('keyup', '.seconds', function(event){
+            seconds = parseInt($(this).val()) || 1;
 
             clearInterval(interval);
             interval = setInterval(function(){
