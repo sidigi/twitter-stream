@@ -132,7 +132,6 @@
 	</style>
 </head>
 <body>
-    <div id="app">
         @if (!auth()->guest())
 		    <nav class="navbar navbar-default navbar-static-top">
 			    <div class="container">
@@ -162,8 +161,6 @@
 		        @yield('content')
 	        </section>
         </div>
-
-    </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
