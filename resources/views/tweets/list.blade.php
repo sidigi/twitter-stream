@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-6 page-wrapper">
 	<div class="posts">
 		@if($mainTweet)
 			<div class="post">
@@ -52,10 +52,15 @@
 	</div>
 </div>
 
+
 {{ $tweets->links() }}
 <script>
-    var seconds = 60;
-    setTimeout(function(){
-        location.reload()
+    var seconds = 5;
+    setInterval(function(){
+        $.ajax({
+	        url: location.href,
+        }).done(function(data){
+			$('.page-wrapper').html($(data).find('.page-wrapper').html())
+        });
     }, seconds * 1000);
 </script>

@@ -158,7 +158,12 @@
 		    </nav>
         @endif
 
-        @yield('content')
+        <div class="container-wide">
+	        <section class="container-fluid">
+		        @yield('content')
+	        </section>
+        </div>
+
     </div>
 
     <!-- Scripts -->
