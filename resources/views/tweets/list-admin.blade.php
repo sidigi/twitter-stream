@@ -5,7 +5,7 @@
 	<div class="form-group row">
 		<div class="col-xs-2">
 			<div class="form-check">
-				<input type="checkbox" class="form-check-input" id="auto-reload">
+				<input type="checkbox" class="form-check-input" id="auto-reload" checked="checked">
 				<label class="form-check-label" for="auto-reload">Auto reload</label>
 			</div>
 		</div>
@@ -82,7 +82,10 @@
             }
         })
         .done(function(data){
-            $('.ajax-wr form').html($(data).find('.ajax-wr form').html());
+            var domStr = '.ajax-wr form',
+                response = $(data).find(domStr);
+
+            $(domStr).html(response.html());
         });
     };
 
@@ -135,9 +138,8 @@
                         'opacity': '1',
                     })
                 }
-            }).done(function(data){
-                console.log(data);
             });
+
             return false;
         })
     });
