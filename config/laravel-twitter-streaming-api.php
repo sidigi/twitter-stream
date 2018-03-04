@@ -17,7 +17,13 @@ return [
     'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
 
     'hash' => [
-        '#bgs',
-        '#bgsgroup',
+        '#BGS',
+        '#BGSgroup',
+        '#oilandgasseries',
+        '#epoch',
+        '#oilepoch',
+        '#offshoreonelove',
+        '#EPOCH2018',
+        '#EPOCHgaladinner',
     ]
 ];
