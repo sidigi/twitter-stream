@@ -25,7 +25,7 @@
 										<img class="tweet-image" src="{{ $media['media_url'] }}" alt="">
 									@endforeach
 								@endif
-								<div class="tweet-message">{{ $tweet->tweet_text }}</div>
+								<div class="tweet-message">{!! $tweet->tweet_text !!}</div>
 							</div>
 						</div>
 					</div>
