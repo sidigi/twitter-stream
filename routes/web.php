@@ -54,6 +54,7 @@ Route::post('approve-tweets', ['middleware' => 'auth', function (Illuminate\Http
             $tweet = App\Tweet::where('id',$tweet_id)->first();
             if ($tweet) {
                 $tweet->approved = (int)$input_val;
+                $tweet->moderated = true;
                 $tweet->save();
             }
         }

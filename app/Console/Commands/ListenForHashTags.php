@@ -38,7 +38,6 @@ class ListenForHashTags extends Command
                 $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
 
                 if (isset($tweet['id'])) {
-
                     Tweet::create([
                         'id' => $tweet['id_str'],
                         'json' => json_encode($tweet),
@@ -46,7 +45,8 @@ class ListenForHashTags extends Command
                         'user_id' => $user_id,
                         'user_screen_name' => $user_screen_name,
                         'user_avatar_url' => $user_avatar_url,
-                        'approved' => 0
+                        'approved' => 0,
+                        'moderated' => 0
                     ]);
 
                     var_dump('|**************** added tweet with id' . $tweet['id']. '************|');

@@ -22,7 +22,7 @@
 		{{ csrf_field() }}
 
 		@foreach($tweets as $tweet)
-			<div class="tweet row">
+			<div class="tweet row @if (!$tweet->moderated) unread @endif">
 				<div class="col-xs-8">
 					@include('tweets.tweet')
 				</div>
@@ -33,8 +33,10 @@
 								name="approval-status-{{ $tweet->id }}"
 								value="1"
 								class="approve-action"
-								@if($tweet->approved)
-								checked="checked"
+								@if ($tweet->moderated)
+									@if($tweet->approved)
+									checked="checked"
+									@endif
 								@endif
 						>
 						Approved
@@ -45,8 +47,10 @@
 								name="approval-status-{{ $tweet->id }}"
 								value="0"
 								class="approve-action"
-								@unless($tweet->approved)
-								checked="checked"
+								@if ($tweet->moderated)
+									@unless($tweet->approved)
+										checked="checked"
+									@endif
 								@endif
 						>
 						Unapproved

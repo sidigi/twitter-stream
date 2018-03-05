@@ -129,6 +129,10 @@
 		.posts .post-media img {
 			max-width: 100%;
 		}
+
+		.unread{
+			background: #baffbe;;
+		}
 	</style>
 </head>
 <body>

@@ -21,6 +21,7 @@ class CreateTweetsTable extends Migration
             $table->string('user_screen_name')->nullable();
             $table->string('user_avatar_url')->nullable();
             $table->boolean('approved');
+            $table->boolean('moderated');
             $table->timestamps();
         });
     }
