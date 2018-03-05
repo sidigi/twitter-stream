@@ -11,6 +11,8 @@
 |
 */
 
+use Thujohn\Twitter\Facades\Twitter;
+
 Route::get('/', function () {
     if (auth()->check() && auth()->user()->hasRole('manager')) {
         $tweets = App\Tweet::orderBy('created_at','desc')->paginate(25);
@@ -64,6 +66,35 @@ Route::post('approve-tweets', ['middleware' => 'auth', function (Illuminate\Http
         return redirect()->back();
     }
 }]);
+
+Route::get('/custom-tweet/save/{id}/', function($id){
+    $tweet = (array) Twitter::getTweet($id);
+    $tweet = json_decode(json_encode($tweet), true);
+
+    $tweet_text = isset($tweet['text']) ? $tweet['text'] : null;
+    $user_id = isset($tweet['user']['id_str']) ? $tweet['user']['id_str'] : null;
+    $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
+    $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
+
+    if (isset($tweet['id'])) {
+        if (!App\Tweet::where('id', $tweet['id'])->first()){
+            App\Tweet::create([
+                'id' => $tweet['id_str'],
+                'json' => json_encode($tweet),
+                'tweet_text' => $tweet_text,
+                'user_id' => $user_id,
+                'user_screen_name' => $user_screen_name,
+                'user_avatar_url' => $user_avatar_url,
+                'approved' => 0,
+                'moderated' => 0
+            ]);
+            return '|**************** added tweet with id ' . $tweet['id']. '************|';
+        }
+        return '|**************** already created ' . $tweet['id']. '************|';
+    }
+
+    return '|**************** tweet not found id: ' . $tweet['id']. '************|';
+});
 
 Auth::routes();
 
