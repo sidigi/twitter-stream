@@ -34,6 +34,39 @@
     </script>
 
 	<style>
+		@font-face {
+			font-family: light;
+			src: url("/fonts/Proxima Nova Light.otf?076d851b602b9915c429f3a2e436c639");
+			src: local(light);
+			src: url("/fonts/Proxima Nova Light.otf?076d851b602b9915c429f3a2e436c639") format("opentype");
+		}
+
+		@font-face {
+			font-family: regular;
+			src: url("/fonts/Proxima Nova Regular.otf?410504d49238e955ba7dc23a7f963021");
+			src: local(regular);
+			src: url("/fonts/Proxima Nova Regular.otf?410504d49238e955ba7dc23a7f963021") format("opentype");
+		}
+
+		@font-face {
+			font-family: bold;
+			src: url("/fonts/Proxima Nova Bold.otf?62d4d7d369292a9bf23762465ec6d704");
+			src: local(bold);
+			src: url("/fonts/Proxima Nova Bold.otf?62d4d7d369292a9bf23762465ec6d704") format("opentype");
+		}
+
+		@font-face {
+			font-family: extrabold;
+			src: url("/fonts/Proxima Nova Extrabold.otf?b4f9eb8ce027016ab9b9860817451d07");
+			src: local(extrabold);
+			src: url("/fonts/Proxima Nova Extrabold.otf?b4f9eb8ce027016ab9b9860817451d07") format("opentype");
+		}
+
+		body {
+			background: #e7ecef;
+			font-family: regular, sans-serif;
+		}
+
 		.tweet-box {
 			margin-bottom: 10px;
 		}

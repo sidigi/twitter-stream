@@ -1,12 +1,19 @@
 @extends('layouts.public')
 
 @section('content')
+	<div class="row">
+		<div class="col-md-12">
+			<div class="text-center">
+				<h1>#EPOCH2018</h1>
+			</div>
+		</div>
+	</div>
 	<section class="tweeter-stream page-wrapper">
 		<div class="container">
 			<div class="tweets-masonry flexbox flex-space flex-condensed row">
 				@foreach($tweets as $tweet)
 					<div class="tweet-box flex-item col-md-3">
-						<div class="tweet">
+						<div class="tweet {{$tweet->id}}">
 							<div class="tweet-header">
 								<span class="tweet-icon" style="background-image:url({{ $tweet->user_avatar_url }})"></span>
 								<h5 class="tweet-title">{{ $tweet->user_screen_name }}</h5>
