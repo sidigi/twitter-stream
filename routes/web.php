@@ -21,14 +21,28 @@ Route::get('/', function () {
         $tweets->map(function ($item, $key){
             $item->json = json_decode($item->json, true);
 
+            if (isset($item->json['extended_entities']) && isset($item->json['extended_entities']['media'])){
+                $item->media = $item->json['extended_entities']['media'];
+            }
+
+            if (isset($item->json['retweeted_status'])
+                && isset($item->json['retweeted_status']['extended_tweet'])
+                && isset($item->json['retweeted_status']['extended_tweet']['extended_entities'])
+                && isset($item->json['retweeted_status']['extended_tweet']['extended_entities']['media'])){
+                $item->media = $item->json['retweeted_status']['extended_tweet']['extended_entities']['media'];
+            }
+
+            if (isset($item->json['retweeted_status'])
+                && isset($item->json['retweeted_status']['extended_tweet'])
+                && isset($item->json['retweeted_status']['extended_tweet']['entities'])
+                && isset($item->json['retweeted_status']['extended_tweet']['entities']['media'])){
+                $item->media = $item->json['retweeted_status']['extended_tweet']['entities']['media'];
+            }
+
             if (isset($item->json['extended_tweet'])
                 && isset($item->json['extended_tweet']['extended_entities'])
                 && isset($item->json['extended_tweet']['extended_entities']['media'])){
                 $item->media = $item->json['extended_tweet']['extended_entities']['media'];
-            }
-
-            if (isset($item->json['extended_entities']) && isset($item->json['extended_entities']['media'])){
-                $item->media = $item->json['extended_entities']['media'];
             }
 
             $item->tweet_text = preg_replace("/([\w]+\:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/", "<a target=\"_blank\" href=\"$1\">$1</a>", $item->tweet_text);
@@ -43,14 +57,28 @@ Route::get('/', function () {
         $tweets->map(function ($item, $key){
             $item->json = json_decode($item->json, true);
 
+            if (isset($item->json['extended_entities']) && isset($item->json['extended_entities']['media'])){
+                $item->media = $item->json['extended_entities']['media'];
+            }
+
+            if (isset($item->json['retweeted_status'])
+                && isset($item->json['retweeted_status']['extended_tweet'])
+                && isset($item->json['retweeted_status']['extended_tweet']['extended_entities'])
+                && isset($item->json['retweeted_status']['extended_tweet']['extended_entities']['media'])){
+                $item->media = $item->json['retweeted_status']['extended_tweet']['extended_entities']['media'];
+            }
+
+            if (isset($item->json['retweeted_status'])
+                && isset($item->json['retweeted_status']['extended_tweet'])
+                && isset($item->json['retweeted_status']['extended_tweet']['entities'])
+                && isset($item->json['retweeted_status']['extended_tweet']['entities']['media'])){
+                $item->media = $item->json['retweeted_status']['extended_tweet']['entities']['media'];
+            }
+
             if (isset($item->json['extended_tweet'])
                 && isset($item->json['extended_tweet']['extended_entities'])
                 && isset($item->json['extended_tweet']['extended_entities']['media'])){
                 $item->media = $item->json['extended_tweet']['extended_entities']['media'];
-            }
-
-            if (isset($item->json['extended_entities']) && isset($item->json['extended_entities']['media'])){
-                $item->media = $item->json['extended_entities']['media'];
             }
 
             $item->tweet_text = preg_replace("/([\w]+\:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/", "<a target=\"_blank\" href=\"$1\">$1</a>", $item->tweet_text);
