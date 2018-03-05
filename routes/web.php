@@ -50,9 +50,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test-design', function () {
-    if (auth()->check() && auth()->user()->hasRole('manager')) {
-        return view('test.design');
-    }
+    $tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->paginate(25);
+
+    $tweets->map(function ($item, $key){
+        $item->json = json_decode($item->json, true);
+        if (isset($item->json['extended_entities']) && isset($item->json['extended_entities']['media'])){
+            $item->media = $item->json['extended_entities']['media'];
+        }
+    });
+
+    $mainTweet = $subTweet = null;
+
+    return view(config('view.welcome_view'), compact('tweets', 'mainTweet', 'subTweet'));
 });
 
 Route::post('approve-tweets', ['middleware' => 'auth', function (Illuminate\Http\Request $request) {

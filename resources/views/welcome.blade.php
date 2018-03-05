@@ -22,6 +22,5 @@
 		@else
 			@include('tweets.list')
 		@endif
-
-</div>
+	</div>
 @endsection

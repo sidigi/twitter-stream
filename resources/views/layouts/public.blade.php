@@ -32,9 +32,88 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+	<style>
+		.tweet-box {
+			margin-bottom: 10px;
+		}
+		.tweet {
+			padding: 1em;
+			-webkit-transition:1s ease all;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.35);
+			box-shadow: 0 1px 3px rgba(0,0,0,.35);
+			background-color: #F9F9F9;
+		}
+		.tweet .tweet-header {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-webkit-align-items: center;
+			-ms-flex-align: center;
+			align-items: center;
+			margin-bottom:15px;
+		}
+		.tweet .tweet-header > * {}
+		.tweet .tweet-header .tweet-icon {
+			width: 40px;
+			max-width: 40px;
+			min-width: 40px;
+			height: 40px;
+			max-height: 40px;
+			min-height: 40px;
+			border-radius: 50%;
+			border: 1px solid #dcdcdc;
+			background-repeat: no-repeat;
+			background-position: center center;
+			-webkit-background-size: cover;
+			background-size: cover;
+		}
+		.tweet .tweet-header .tweet-title {
+			margin: 0;
+			font-weight: bold;
+		}
+		.tweet .tweet-header .tweet-time {
+			font-size: .8em;
+			min-width: 5em;
+			text-align: right;
+			color: gray;
+		}
+		.tweet .tweet-header .tweet-icon + .tweet-title {
+			margin-left: 10px;
+		}
+		.tweet .tweet-body .tweet-image {
+			width:100%;
+		}
+		.tweet .tweet-body .tweet-image + .tweet-message {
+			margin-top: 10px;
+		}
+	</style>
 </head>
 <body>
-	@yield('content')
+	<div>
+		@yield('content')
+	</div>
+
     <script src="/js/app.js"></script>
+	<script src="/js/masonry.min.js"></script>
+	<script>
+        var seconds = 5;
+        setInterval(function(){
+            $.ajax({
+                url: location.href,
+            }).done(function(data){
+                $('.page-wrapper').html($(data).find('.page-wrapper').html());
+                $('.tweets-masonry').masonry({
+                    itemSelector: '.tweet-box'
+                });
+            });
+        }, seconds * 1000);
+
+	</script>
 </body>
 </html>

@@ -19,7 +19,6 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
 
     <title>{{ config('app.name', 'EPOCH2018') }}</title>
 
