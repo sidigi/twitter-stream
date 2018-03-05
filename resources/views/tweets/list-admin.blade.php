@@ -22,7 +22,7 @@
 		{{ csrf_field() }}
 
 		@foreach($tweets as $tweet)
-			<div class="tweet row @if (!$tweet->moderated) unread @endif">
+			<div class="tweet row @if (!$tweet->moderated) unread @endif" data-tweet-id="{{$tweet->id}}">
 				<div class="col-xs-8">
 					@include('tweets.tweet')
 				</div>
@@ -55,6 +55,12 @@
 						>
 						Unapproved
 					</label>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<a href="#" style="float: right" class="delete-tweet">Delete</a>
 				</div>
 			</div>
 		@endforeach
@@ -163,6 +169,38 @@
             });
 
             return false;
-        })
+        });
+        $(document).on('click', '.delete-tweet', function(event){
+            if (confirm('Are you shure?')){
+                var
+	                _this = $(this),
+	                form = $('.tweet-form'),
+	                id = _this.closest('.tweet').data('tweet-id');
+
+                var data = {
+                    '_token': form.find('[name="_token"]').val(),
+                };
+
+                if (id){
+                    data['tweet_id'] = id;
+                }
+
+                $.ajax({
+                    url: '/delete-tweet/',
+                    type: 'post',
+                    data: data,
+                    beforeSend: function() {
+                        _this.closest('.tweet').css({
+                            'opacity': '.1',
+                        })
+                    },
+                    complete: function() {
+                        _this.closest('.tweet').remove();
+                    }
+                })
+            }
+            event.preventDefault();
+        });
+
     });
 </script>

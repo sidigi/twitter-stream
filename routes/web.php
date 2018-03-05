@@ -14,6 +14,7 @@
 use Thujohn\Twitter\Facades\Twitter;
 
 Route::get('/', function () {
+
     if (auth()->check() && auth()->user()->hasRole('manager')) {
         $tweets = App\Tweet::orderBy('created_at','desc')->paginate(25);
 
@@ -82,6 +83,17 @@ Route::post('approve-tweets', ['middleware' => 'auth', function (Illuminate\Http
                 $tweet->save();
             }
         }
+    }
+
+    if (!$request->ajax()){
+        return redirect()->back();
+    }
+}]);
+
+Route::post('delete-tweet', ['middleware' => 'auth', function (Illuminate\Http\Request $request) {
+    $tweetId = $request->get('tweet_id');
+    if ($tweetId){
+        App\Tweet::where('id', $tweetId)->delete();
     }
 
     if (!$request->ajax()){
