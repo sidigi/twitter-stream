@@ -43,9 +43,11 @@ Route::get('/', function () {
         $tweets->map(function ($item, $key){
             $item->json = json_decode($item->json, true);
 
-            /*if (isset($item->json['entities']) && isset($item->json['entities']['media'])){
-                $item->media = $item->json['entities']['media'];
-            }*/
+            if (isset($item->json['extended_tweet'])
+                && isset($item->json['extended_tweet']['extended_entities'])
+                && isset($item->json['extended_tweet']['extended_entities']['media'])){
+                $item->media = $item->json['extended_tweet']['extended_entities']['media'];
+            }
 
             if (isset($item->json['extended_entities']) && isset($item->json['extended_entities']['media'])){
                 $item->media = $item->json['extended_entities']['media'];
