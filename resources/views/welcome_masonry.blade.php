@@ -8,7 +8,6 @@
 			</div>
 		</div>
 	</div>
-	<br>
 	<section class="tweeter-stream page-wrapper">
 		<div class="container-fluid">
 			<div class="tweets-masonry row" data-masonry='{"itemSelector": ".tweet-box", "horizontalOrder": "true"}'>

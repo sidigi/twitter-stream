@@ -37,14 +37,15 @@ Route::get('/', function () {
 
         $mainTweet = $subTweet = null;
 
-        if ($tweets){
+        /*if ($tweets){
             $mainTweet = $tweets->shift();
         }
         if ($tweets){
             $subTweet = $tweets->shift();
         }
 
-        return view('welcome', compact('tweets', 'mainTweet', 'subTweet'));
+        return view('welcome', compact('tweets', 'mainTweet', 'subTweet'));*/
+        return view(config('view.welcome_view'), compact('tweets', 'mainTweet', 'subTweet'));
     }
 });
 

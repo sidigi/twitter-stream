@@ -67,8 +67,10 @@
 			font-family: regular, sans-serif;
 			font-size: 2em;
 		}
-
-		h1, h2 , .tweet-title{
+		h1{
+			margin-bottom: 22px;
+		}
+		h1, .tweet-title{
 			color: #000;
 		}
 
@@ -159,7 +161,7 @@
 	<script src="/js/masonry.min.js"></script>
 	<script>
         var seconds = 5;
-        /*setInterval(function(){
+        setInterval(function(){
             $.ajax({
                 url: location.href,
             }).done(function(data){
@@ -168,7 +170,7 @@
                     itemSelector: '.tweet-box'
                 });
             });
-        }, seconds * 1000);*/
+        }, seconds * 1000);
 
 	</script>
 </body>
