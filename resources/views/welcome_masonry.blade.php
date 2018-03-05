@@ -4,8 +4,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="text-center">
-				<h2>Twitter stream</h2>
-				<h1>#EPOCH2018</h1>
+				<h1>Twitter stream <b>#EPOCH2018</b></h1>
 			</div>
 		</div>
 	</div>
