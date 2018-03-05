@@ -49,6 +49,12 @@ Route::get('/', function () {
     }
 });
 
+Route::get('/test-design', function () {
+    if (auth()->check() && auth()->user()->hasRole('manager')) {
+        return view('test.design');
+    }
+});
+
 Route::post('approve-tweets', ['middleware' => 'auth', function (Illuminate\Http\Request $request) {
     foreach ($request->all() as $input_key => $input_val) {
         if ( strpos($input_key, 'approval-status-') === 0 ) {
