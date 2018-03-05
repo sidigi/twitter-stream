@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Tweet;
 use Illuminate\Console\Command;
+use Mockery\Exception;
 use TwitterStreamingApi;
 
 class ListenForHashTags extends Command
@@ -37,6 +38,7 @@ class ListenForHashTags extends Command
                 $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
 
                 if (isset($tweet['id'])) {
+
                     Tweet::create([
                         'id' => $tweet['id_str'],
                         'json' => json_encode($tweet),
