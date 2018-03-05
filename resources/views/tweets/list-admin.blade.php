@@ -5,7 +5,7 @@
 	<div class="form-group row">
 		<div class="col-xs-2">
 			<div class="form-check">
-				<input type="checkbox" class="form-check-input" id="auto-reload" checked="checked">
+				<input type="checkbox" class="form-check-input" id="auto-reload">
 				<label class="form-check-label" for="auto-reload">Auto reload</label>
 			</div>
 		</div>
@@ -94,6 +94,10 @@
     };
 
     $(function(){
+        if (localStorage.getItem('autoReload')){
+            $('#auto-reload').prop('checked', true);
+        }
+
         $(document).on('click', '.reload', function(event){
             event.preventDefault();
             reload();
@@ -117,6 +121,17 @@
             }, seconds * 1000);
         });
 
+        $(document).on('change', '#auto-reload', function(event){
+            var _this = $(this);
+
+            if (_this.prop('checked')){
+                localStorage.setItem('autoReload', 'true');
+            }else{
+                localStorage.setItem('autoReload', '');
+            }
+
+        });
+
         $(document).on('change', '.approve-action', function(event){
             event.preventDefault();
 
@@ -126,6 +141,9 @@
                 data = {
                     '_token': form.find('[name="_token"]').val(),
                 };
+
+            _this.closest('.tweet').removeClass('unread');
+
             data[name] = _this.val();
 
             $.ajax({

@@ -76,7 +76,6 @@
 	</div>
 </div>
 
-{{ $tweets->links() }}
 <script>
     var seconds = 5;
     setInterval(function(){
