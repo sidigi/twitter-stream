@@ -4,21 +4,22 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="text-center">
+				<h2>Twitter stream</h2>
 				<h1>#EPOCH2018</h1>
 			</div>
 		</div>
 	</div>
 	<br>
 	<section class="tweeter-stream page-wrapper">
-		<div class="container">
-			<div class="tweets-masonry flexbox flex-space flex-condensed row">
+		<div class="container-fluid">
+			<div class="tweets-masonry row" data-masonry='{"itemSelector": ".tweet-box", "horizontalOrder": "true"}'>
 				@foreach($tweets as $tweet)
-					<div class="tweet-box flex-item col-md-3">
+					<div class="tweet-box col-md-3">
 						<div class="tweet {{$tweet->id}}">
 							<div class="tweet-header">
 								<span class="tweet-icon" style="background-image:url({{ $tweet->user_avatar_url }})"></span>
 								<h5 class="tweet-title">{{ $tweet->user_screen_name }}</h5>
-								<span class="tweet-time">{{ $tweet->created_at->diffForHumans() }}</span>
+								<span class="tweet-time"> {{ $tweet->created_at->diffForHumans() }}</span>
 							</div>
 							<div class="tweet-body">
 								@if($tweet->media)

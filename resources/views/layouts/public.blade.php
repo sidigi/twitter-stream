@@ -65,13 +65,35 @@
 		body {
 			background: #e7ecef;
 			font-family: regular, sans-serif;
+			font-size: 2em;
 		}
 
+		h1, h2 , .tweet-title{
+			color: #000;
+		}
+
+		.tweet-title, .tweet-time{
+			font-size: 1.1em;
+		}
+
+		.tweeter-stream h3 {
+			text-transform: unset;
+			text-align: center;
+		}
+		.tweeter-stream h2 {
+			text-align: center;
+		}
+		.tweets-masonry {
+			margin-left: -7px;
+			margin-right: -7px;
+		}
 		.tweet-box {
-			margin-bottom: 10px;
+			margin-bottom: 14px;
+			padding-left: 7px;
+			padding-right: 7px;
 		}
 		.tweet {
-			padding: 1em;
+			padding: 10px;
 			-webkit-transition:1s ease all;
 			box-sizing: border-box;
 			-moz-box-sizing: border-box;
@@ -89,7 +111,7 @@
 			-webkit-align-items: center;
 			-ms-flex-align: center;
 			align-items: center;
-			margin-bottom:15px;
+			margin-bottom: 10px;
 		}
 		.tweet .tweet-header > * {}
 		.tweet .tweet-header .tweet-icon {
@@ -115,6 +137,7 @@
 			min-width: 5em;
 			text-align: right;
 			color: gray;
+			margin-left: auto;
 		}
 		.tweet .tweet-header .tweet-icon + .tweet-title {
 			margin-left: 10px;
@@ -136,7 +159,7 @@
 	<script src="/js/masonry.min.js"></script>
 	<script>
         var seconds = 5;
-        setInterval(function(){
+        /*setInterval(function(){
             $.ajax({
                 url: location.href,
             }).done(function(data){
@@ -145,7 +168,7 @@
                     itemSelector: '.tweet-box'
                 });
             });
-        }, seconds * 1000);
+        }, seconds * 1000);*/
 
 	</script>
 </body>

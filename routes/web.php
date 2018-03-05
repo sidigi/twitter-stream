@@ -26,8 +26,7 @@ Route::get('/', function () {
 
         return view('welcome', compact('tweets'));
     } else {
-        //$tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->take(22)->get();
-        $tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->paginate(25);
+        $tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->take(25)->get();
 
         $tweets->map(function ($item, $key){
             $item->json = json_decode($item->json, true);
@@ -50,7 +49,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test-design', function () {
-    $tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->paginate(25);
+    $tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->take(25)->get();
 
     $tweets->map(function ($item, $key){
         $item->json = json_decode($item->json, true);
