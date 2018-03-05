@@ -20,9 +20,15 @@ Route::get('/', function () {
 
         $tweets->map(function ($item, $key){
             $item->json = json_decode($item->json, true);
+
+            if (isset($item->json['entities']) && isset($item->json['entities']['media'])){
+                $item->media = $item->json['entities']['media'];
+            }
+
             if (isset($item->json['extended_entities']) && isset($item->json['extended_entities']['media'])){
                 $item->media = $item->json['extended_entities']['media'];
             }
+
             $item->tweet_text = preg_replace("/([\w]+\:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/", "<a target=\"_blank\" href=\"$1\">$1</a>", $item->tweet_text);
             $item->tweet_text = preg_replace("/#([A-Za-z0-9\/\.]*)/", "<a target=\"_new\" href=\"http://twitter.com/search?q=$1\">#$1</a>", $item->tweet_text);
             $item->tweet_text = preg_replace("/@([A-Za-z0-9\/\.]*)/", "<a href=\"http://www.twitter.com/$1\">@$1</a>", $item->tweet_text);
@@ -34,6 +40,11 @@ Route::get('/', function () {
 
         $tweets->map(function ($item, $key){
             $item->json = json_decode($item->json, true);
+
+            /*if (isset($item->json['entities']) && isset($item->json['entities']['media'])){
+                $item->media = $item->json['entities']['media'];
+            }*/
+
             if (isset($item->json['extended_entities']) && isset($item->json['extended_entities']['media'])){
                 $item->media = $item->json['extended_entities']['media'];
             }
