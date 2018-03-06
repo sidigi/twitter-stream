@@ -186,7 +186,7 @@
                 }
 
                 $.ajax({
-                    url: '/delete-tweet/',
+                    url: '/delete-tweet',
                     type: 'post',
                     data: data,
                     beforeSend: function() {
