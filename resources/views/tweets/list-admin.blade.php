@@ -175,7 +175,7 @@
                 var
 	                _this = $(this),
 	                form = $('.tweet-form'),
-	                id = _this.closest('.tweet').data('tweet-id');
+	                id = _this.closest('.tweet').attr('data-tweet-id');
 
                 var data = {
                     '_token': form.find('[name="_token"]').val(),

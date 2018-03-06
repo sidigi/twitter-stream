@@ -13,7 +13,7 @@
 			<div class="tweets-masonry row" data-masonry='{"itemSelector": ".tweet-box", "horizontalOrder": "true"}'>
 				@foreach($tweets as $tweet)
 					<div class="tweet-box col-md-3">
-						<div class="tweet {{$tweet->id}}">
+						<div class="tweet {{$tweet->id}}" data-tweet-id="{{$tweet->id}}">
 							<div class="tweet-header">
 								<span class="tweet-icon" style="background-image:url({{ $tweet->user_avatar_url }})"></span>
 								<h5 class="tweet-title">{{ $tweet->user_screen_name }}</h5>

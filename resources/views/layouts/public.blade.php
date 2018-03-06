@@ -161,14 +161,20 @@
 	<script src="/js/masonry.min.js"></script>
 	<script>
         var seconds = 5;
+
+        Array.prototype.diff = function(a) {
+            return this.filter(function(i) {return a.indexOf(i) < 0;});
+        };
+
         setInterval(function(){
             $.ajax({
                 url: location.href,
-            }).done(function(data){
-                $('.page-wrapper').html($(data).find('.page-wrapper').html());
-                $('.tweets-masonry').masonry({
-                    itemSelector: '.tweet-box'
-                });
+                success: function(data){
+                    $('.page-wrapper').html($(data).find('.page-wrapper').html());
+	                $('.tweets-masonry').masonry({
+	                    itemSelector: '.tweet-box'
+	                });
+                }
             });
         }, seconds * 1000);
 
