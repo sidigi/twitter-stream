@@ -20,8 +20,6 @@
 4) `composer install`
 5) `php artisan migrate:refresh --seed`
 6) `php artisan shedule:run` - запуск задач из командной строки или `* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1` - на крон
-* !!! Не запускать несколько процессов
-* !!! Не останавливать процесс через `Ctrl+C` (это вырубить задачу, но не вырубит занятый connection - поможет или ребут сервера или вручную снятие соединения - не знаю как это делать руками).
 `php artisan shedule:run &` - запуск в фоне 
 7) `/login` для менеджера (кто модерирует твиты)
 
