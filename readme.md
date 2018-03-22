@@ -41,6 +41,7 @@
 
 
 /vendor/fennb/phirehose/lib/Phirehose.php
+```php
   protected $followIds = [];
   protected $locationBoxes = [];
-
+```
