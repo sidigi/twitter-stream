@@ -37,3 +37,10 @@
 * `jobs` или `jobs -l` - список процессов 
 * `jobs -p` - спискок PID
 * `kill -9 [PID]` - убить процесс
+
+
+
+/vendor/fennb/phirehose/lib/Phirehose.php
+  protected $followIds = [];
+  protected $locationBoxes = [];
+
