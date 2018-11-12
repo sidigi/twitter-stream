@@ -1,19 +1,7 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use Thujohn\Twitter\Facades\Twitter;
 
 Route::get('/', function () {
-
     if (auth()->check() && auth()->user()->hasRole('manager')) {
         $tweets = App\Tweet::orderBy('created_at','desc')->paginate(25);
 
@@ -32,8 +20,9 @@ Route::get('/', function () {
             $item->tweet_text = preg_replace("/@([A-Za-z0-9\/\.]*)/", "<a href=\"http://www.twitter.com/$1\">@$1</a>", $item->tweet_text);
         });
 
-        return view('welcome', compact('tweets'));
+        return view('admin.index', compact('tweets'));
     } else {
+
         $tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->take(25)->get();
 
         $tweets->map(function ($item, $key){
@@ -53,19 +42,49 @@ Route::get('/', function () {
 
         $mainTweet = $subTweet = null;
 
-        /*if ($tweets){
-            $mainTweet = $tweets->shift();
-        }
-        if ($tweets){
-            $subTweet = $tweets->shift();
-        }
-
-        return view('welcome', compact('tweets', 'mainTweet', 'subTweet'));*/
-        return view(config('view.welcome_view'), compact('tweets', 'mainTweet', 'subTweet'));
+        return view('public.index', compact('tweets', 'mainTweet', 'subTweet'));
     }
 });
 
-Route::get('/test-design', function () {
+Route::get('/tweet/add', function () {
+    return view('tweet.add');
+});
+
+Route::post('/tweet/add', function (\Illuminate\Http\Request $request) {
+    $msg = \App\Service\TwitterService::addFromForm($request->tweet);
+
+    return redirect()->back()->with(['success'=> $msg]);
+})->name('tweet.store');
+
+Route::get('/tweet/{id}', function ($id) {
+    $tweet = (array) Twitter::getTweet($id);
+    $tweet = json_decode(json_encode($tweet), true);
+
+    $extendedTweet = (array) Twitter::getTweet($id, ['tweet_mode' => 'extended']);
+    $extendedTweet = json_decode(json_encode($extendedTweet), true);
+
+    $tweet_text = isset($tweet['text']) ? $tweet['text'] : null;
+    $user_id = isset($tweet['user']['id_str']) ? $tweet['user']['id_str'] : null;
+    $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
+    $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
+
+    $media = [];
+    recursive($extendedTweet, 'media', $media);
+
+    return view('tweet.tweet', ['tweet' => (object) [
+        'id' => $tweet['id_str'],
+        'json' => json_encode($tweet + $extendedTweet),
+        'tweet_text' => $tweet_text,
+        'user_id' => $user_id,
+        'user_screen_name' => $user_screen_name,
+        'user_avatar_url' => $user_avatar_url,
+        'approved' => false,
+        'moderated' => false,
+        'media' => $media,
+    ]]);
+})->name('tweet.detail');
+
+Route::get('/test', function () {
     $tweets = App\Tweet::where('approved',1)->orderBy('created_at','desc')->take(25)->get();
 
     $tweets->map(function ($item, $key){
@@ -77,7 +96,7 @@ Route::get('/test-design', function () {
 
     $mainTweet = $subTweet = null;
 
-    return view(config('view.welcome_view'), compact('tweets', 'mainTweet', 'subTweet'));
+    return view('public.index', compact('tweets', 'mainTweet', 'subTweet'));
 });
 
 Route::post('approve-tweets', ['middleware' => 'auth', function (Illuminate\Http\Request $request) {
@@ -109,35 +128,4 @@ Route::post('delete-tweet', ['middleware' => 'auth', function (Illuminate\Http\R
     }
 }]);
 
-Route::get('/custom-tweet/save/{id}/', function($id){
-    $tweet = (array) Twitter::getTweet($id);
-    $tweet = json_decode(json_encode($tweet), true);
-
-    $tweet_text = isset($tweet['text']) ? $tweet['text'] : null;
-    $user_id = isset($tweet['user']['id_str']) ? $tweet['user']['id_str'] : null;
-    $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
-    $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
-
-    if (isset($tweet['id'])) {
-        if (!App\Tweet::where('id', $tweet['id'])->first()){
-            App\Tweet::create([
-                'id' => $tweet['id_str'],
-                'json' => json_encode($tweet),
-                'tweet_text' => $tweet_text,
-                'user_id' => $user_id,
-                'user_screen_name' => $user_screen_name,
-                'user_avatar_url' => $user_avatar_url,
-                'approved' => 0,
-                'moderated' => 0
-            ]);
-            return '|**************** added tweet with id ' . $tweet['id']. '************|';
-        }
-        return '|**************** already created ' . $tweet['id']. '************|';
-    }
-
-    return '|**************** tweet not found id: ' . $tweet['id']. '************|';
-});
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');

@@ -10,7 +10,6 @@
 								     alt="">
 								<div class="name">{{ $mainTweet->user_screen_name }}</div>
 								<div class="created">{{ $mainTweet->created_at->diffForHumans() }}</div>
-
 							</div>
 						</div>
 					</div>

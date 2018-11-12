@@ -17,13 +17,20 @@ return [
     'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
 
     'hash' => [
+        '#PRCMoscow',
+        '#PRCRussia',
+        '#PRCRussia&CIS',
+        '#PRCRussiaCIS',
+        '#PRCRussia2018',
+        '#PRCRussia&CIS2018',
+        '#PRCRussiaCIS2018',
+        '#PRCGalaDinner',
+        '#PRCGalaDinner2018',
+        '#DownstreamOneLove',
         '#BGS',
         '#BGSgroup',
         '#oilandgasseries',
-        '#epoch',
-        '#oilepoch',
-        '#offshoreonelove',
-        '#EPOCH2018',
-        '#EPOCHgaladinner',
+        '#ЯлюблюНЕФТЬ',
+        '#ОперационноЭффективен',
     ]
 ];

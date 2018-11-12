@@ -24,7 +24,7 @@
 		@foreach($tweets as $tweet)
 			<div class="tweet row @if (!$tweet->moderated) unread @endif" data-tweet-id="{{$tweet->id}}">
 				<div class="col-xs-8">
-					@include('tweets.tweet')
+					@include('tweet.tweet')
 				</div>
 				<div class="col-xs-4 approval">
 					<label class="radio-inline">
