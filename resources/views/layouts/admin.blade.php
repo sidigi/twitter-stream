@@ -141,17 +141,17 @@
 		            <div class="collapse navbar-collapse" id="app-navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="/">
+								<a href="/admin">
 									Home
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="/tweet/add">
+								<a href="/admin/tweet/add">
 									Add tweet
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="/test">
+								<a href="/admin/test">
 									Test
 								</a>
 							</li>

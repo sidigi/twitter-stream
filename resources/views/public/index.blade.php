@@ -1,6 +1,12 @@
 @extends('layouts.public')
 
 @section('content')
+	@if (!auth()->guest())
+		<div style="display: block; position: fixed; width: 100px; height: 50px; cursor: pointer; z-index: 222; bottom: 20px; left: 20px">
+			<a href="/admin" class="btn btn-primary">Back</a>
+		</div>
+	@endif
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="text-center">

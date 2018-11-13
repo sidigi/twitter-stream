@@ -18,7 +18,7 @@
 </div>
 <br>
 <div class="ajax-wr">
-	<form action="/approve-tweets" method="post" class="tweet-form">
+	<form action="/admin/approve-tweets" method="post" class="tweet-form">
 		{{ csrf_field() }}
 
 		@foreach($tweets as $tweet)
@@ -186,7 +186,7 @@
                 }
 
                 $.ajax({
-                    url: '/delete-tweet',
+                    url: '/admin/delete-tweet',
                     type: 'post',
                     data: data,
                     beforeSend: function() {

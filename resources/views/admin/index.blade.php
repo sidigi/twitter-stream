@@ -8,20 +8,16 @@
 			</div>
 		</div>
 
-		@if(auth()->check() && auth()->user()->hasRole('manager'))
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-3">
 
-						<div class="tweet-list">
-							@include('tweet.list-admin')
-						</div>
-
+					<div class="tweet-list">
+						@include('tweet.list-admin')
 					</div>
+
 				</div>
 			</div>
-		@else
-			@include('tweet.list')
-		@endif
+		</div>
 	</div>
 @endsection

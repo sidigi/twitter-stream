@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('tweet.store') }}">
+    <form method="POST" action="{{ route('admin.tweet.store') }}">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="tweet">Tweet</label>
@@ -41,7 +41,7 @@
                 }
 
                 $.ajax({
-                    url: '/tweet/' + val,
+                    url: '/admin/tweet/' + val,
                     beforeSend: function() {
                         $('#result').css({
                             'opacity': '.2',
@@ -54,7 +54,7 @@
                     }
                 })
                 .fail(function () {
-                    $('#result').html('<div style="min-width: 600px; min-height: 600px; background: #ccc"></div>');
+                    $('#result').html('<div style="min-width: 600px; min-height: 600px; background: #ccc; text-align: center; vertical-align: middle">No tweets</div>');
                 })
                 .done(function(data){
                     $('#result').html($(data).html());
