@@ -13,7 +13,7 @@
 				<div class="col-md-8 col-md-offset-3">
 
 					<div class="tweet-list">
-						@include('tweet.list-admin')
+						@include('admin.tweet.list')
 					</div>
 
 				</div>

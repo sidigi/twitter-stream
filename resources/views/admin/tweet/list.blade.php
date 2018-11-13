@@ -1,87 +1,206 @@
-<div class="page-wrapper">
-	<div class="col-md-6">
-		<div class="posts">
-			@if($mainTweet)
-				<div class="post">
-					<div class="post-header">
-						<div class="user">
-							<div class="img">
-								<img src="{{ $mainTweet->user_avatar_url }}"
-								     alt="">
-								<div class="name">{{ $mainTweet->user_screen_name }}</div>
-								<div class="created">{{ $mainTweet->created_at->diffForHumans() }}</div>
-							</div>
-						</div>
-					</div>
-					<div class="post-body">
-						<p>
-							{{ $mainTweet->tweet_text }}
-						</p>
-					</div>
-					@if($mainTweet->media)
-						<div class="post-media">
-							@foreach($mainTweet->media as $media)
-								<img src="{{ $media['media_url'] }}" alt="">
-							@endforeach
-						</div>
-					@endif
-				</div>
-			@endif
-			@if($subTweet)
-				<div class="post">
-					<div class="post-header">
-						<div class="user">
-							<div class="img">
-								<img src="{{ $subTweet->user_avatar_url }}"
-								     alt="">
-								<div class="name">{{ $subTweet->user_screen_name }}</div>
-								<div class="created">{{ $subTweet->created_at->diffForHumans() }}</div>
-							</div>
-						</div>
-					</div>
-					<div class="post-body">
-						<p>
-							{{ $subTweet->tweet_text }}
-						</p>
-					</div>
-				</div>
-			@endif
+<div class="row">
+	<div class="form-group">
+		<a class="btn btn-primary reload">Reload</a>
+	</div>
+	<div class="form-group row">
+		<div class="col-xs-2">
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" id="auto-reload">
+				<label class="form-check-label" for="auto-reload">Auto reload</label>
+			</div>
+		</div>
+		<div class="col-xs-3">
+			<label for="">Seconds
+				<input type="number" class="form-control seconds" id="exampleInputPassword1" placeholder="Seconds" value="5">
+			</label>
 		</div>
 	</div>
+</div>
+<br>
+<div class="ajax-wr">
+	<form action="/admin/approve-tweets" method="post" class="tweet-form">
+		{{ csrf_field() }}
 
-	<div class="col-md-6">
-		<div class="posts">
-			@foreach($tweets as $tweet)
-				<div class="post">
-					<div class="post-header">
-						<div class="user">
-							<div class="img">
-								<img src="{{ $tweet->user_avatar_url }}"
-								     alt="">
-								<div class="name">{{ $tweet->user_screen_name }}</div>
-								<div class="created">{{ $tweet->created_at->diffForHumans() }}</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="post-body">
-						<p>
-							{{ $tweet->tweet_text }}
-						</p>
-					</div>
+		@foreach($tweets as $tweet)
+			<div class="tweet row @if (!$tweet->moderated) unread @endif" data-tweet-id="{{$tweet->id}}">
+				<div class="col-xs-8">
+					@include('admin.tweet.tweet')
 				</div>
-			@endforeach
+				<div class="col-xs-4 approval">
+					<label class="radio-inline">
+						<input
+								type="radio"
+								name="approval-status-{{ $tweet->id }}"
+								value="1"
+								class="approve-action"
+								@if ($tweet->moderated)
+									@if($tweet->approved)
+									checked="checked"
+									@endif
+								@endif
+						>
+						Approved
+					</label>
+					<label class="radio-inline">
+						<input
+								type="radio"
+								name="approval-status-{{ $tweet->id }}"
+								value="0"
+								class="approve-action"
+								@if ($tweet->moderated)
+									@unless($tweet->approved)
+										checked="checked"
+									@endif
+								@endif
+						>
+						Unapproved
+					</label>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<a href="#" style="float: right" class="delete-tweet">Delete</a>
+				</div>
+			</div>
+		@endforeach
+		<div class="row">
+			<div class="col-sm-12">
+				<input type="submit" class="btn btn-primary form-sbt hidden" value="Approve Tweets">
+			</div>
 		</div>
+	</form>
+
+	<div class="row">
+		{!! $tweets->links() !!}
 	</div>
 </div>
 
 <script>
-    var seconds = 5;
-    setInterval(function(){
+    var reload = function(){
         $.ajax({
-	        url: location.href,
-        }).done(function(data){
-			$('.page-wrapper').html($(data).find('.page-wrapper').html())
+            url: location.href,
+            beforeSend: function() {
+                $('.ajax-wr form').css({
+                    'opacity': '.2',
+                })
+            },
+            complete: function() {
+                $('.ajax-wr form').css({
+                    'opacity': '1',
+                })
+            }
+        })
+        .done(function(data){
+            var domStr = '.ajax-wr form',
+                response = $(data).find(domStr);
+
+            $(domStr).html(response.html());
         });
-    }, seconds * 1000);
+    };
+
+    $(function(){
+        if (localStorage.getItem('autoReload')){
+            $('#auto-reload').prop('checked', true);
+        }
+
+        $(document).on('click', '.reload', function(event){
+            event.preventDefault();
+            reload();
+        });
+
+        var seconds = $('.seconds').val();
+        var interval = setInterval(function(){
+            if ($('#auto-reload').prop('checked')){
+                reload();
+            }
+        }, seconds * 1000);
+
+        $(document).on('keyup', '.seconds', function(event){
+            seconds = parseInt($(this).val()) || 1;
+
+            clearInterval(interval);
+            interval = setInterval(function(){
+                if ($('#auto-reload').prop('checked')){
+                    reload();
+                }
+            }, seconds * 1000);
+        });
+
+        $(document).on('change', '#auto-reload', function(event){
+            var _this = $(this);
+
+            if (_this.prop('checked')){
+                localStorage.setItem('autoReload', 'true');
+            }else{
+                localStorage.setItem('autoReload', '');
+            }
+
+        });
+
+        $(document).on('change', '.approve-action', function(event){
+            event.preventDefault();
+
+            var _this = $(this),
+                form = $('.tweet-form'),
+                name = _this.attr('name'),
+                data = {
+                    '_token': form.find('[name="_token"]').val(),
+                };
+
+            _this.closest('.tweet').removeClass('unread');
+
+            data[name] = _this.val();
+
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: data,
+                beforeSend: function() {
+                    _this.closest('.tweet').css({
+                        'opacity': '.1',
+                    })
+                },
+                complete: function() {
+                    _this.closest('.tweet').css({
+                        'opacity': '1',
+                    })
+                }
+            });
+
+            return false;
+        });
+        $(document).on('click', '.delete-tweet', function(event){
+            if (confirm('Are you shure?')){
+                var
+	                _this = $(this),
+	                form = $('.tweet-form'),
+	                id = _this.closest('.tweet').attr('data-tweet-id');
+
+                var data = {
+                    '_token': form.find('[name="_token"]').val(),
+                };
+
+                if (id){
+                    data['tweet_id'] = id;
+                }
+
+                $.ajax({
+                    url: '/admin/delete-tweet',
+                    type: 'post',
+                    data: data,
+                    beforeSend: function() {
+                        _this.closest('.tweet').css({
+                            'opacity': '.1',
+                        })
+                    },
+                    complete: function() {
+                        _this.closest('.tweet').remove();
+                    }
+                })
+            }
+            event.preventDefault();
+        });
+
+    });
 </script>
