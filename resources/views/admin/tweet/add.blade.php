@@ -25,7 +25,7 @@
             <input type="text" name="tweet" class="form-control" id="tweet" aria-describedby="tweet" placeholder="Enter tweet">
             <small id="tweet" class="form-text text-muted">Tweet URL or tweet ID. Example: https://twitter.com/BGSgroup_eu/status/1062229951502524416</small>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary save-tweet" disabled>Save</button>
     </form>
 
 
@@ -35,6 +35,8 @@
                 let val = $(this).val();
 
                 val = val.split('/').pop();
+
+                $('.save-tweet').prop('disabled', true);
 
                 if (val.length <= 3){
                     return;
@@ -58,6 +60,7 @@
                 })
                 .done(function(data){
                     $('#result').html($(data).html());
+                    $('.save-tweet').prop('disabled', false);
                 });
             })
         });
