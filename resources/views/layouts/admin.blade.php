@@ -7,9 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-	<script
-			src="//code.jquery.com/jquery-3.3.1.min.js"
-			></script>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -25,12 +23,6 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
 	<style>
 		.tweet {
 			padding: 10px;
@@ -146,12 +138,17 @@
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="/admin/tweet/add">
+								<a href="{{ route('admin.tweets.index') }}">
+									Tweets
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="{{ route('admin.tweets.create') }}">
 									Add tweet
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="/admin/test">
+								<a href="{{ route('admin.test.index') }}">
 									Test
 								</a>
 							</li>
@@ -176,6 +173,14 @@
 
         <div class="container-wide">
 	        <section class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="text-center">
+							<h1>#PRCRussiaCIS2018</h1>
+						</div>
+					</div>
+				</div>
+
 		        @yield('content')
 	        </section>
         </div>

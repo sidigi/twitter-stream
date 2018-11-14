@@ -5,9 +5,34 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Thujohn\Twitter\Facades\Twitter;
 
+/**
+ * @property int                 $id
+ * @property string              $json
+ * @property string              $tweet_test
+ * @property int                 $user_id
+ * @property string              $user_screen_name
+ * @property string              $user_avatar_url
+ * @property boolean             $approved
+ * @property boolean             $moderated
+ */
 class Tweet extends Model
 {
     protected $guarded = [];
+    protected $casts   = [
+        'id'          => 'integer',
+        'user_id'     => 'integer',
+        'json'        => 'array',
+    ];
+
+    public function getMediaAttribute($value)
+    {
+        return $this->getFromMeta('media');
+    }
+
+    public function getFromMeta(string $key)
+    {
+        return find_in_arr_recursive($this->json, $key);
+    }
 
     public static function saveById($id){
         if (! $id){

@@ -18,7 +18,11 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.tweet.store') }}">
+    <form method="POST"
+          action="{{ route('admin.tweets.store') }}"
+          data-get-tweet-url="{{ route('twitter-api.tweet.get', '#') }}"
+    >
+
         {{ csrf_field() }}
         <div class="form-group">
             <label for="tweet">Tweet</label>
@@ -32,9 +36,10 @@
     <script>
         $(function(){
             $(document).on('keyup', '#tweet', function(){
-                let val = $(this).val();
-
-                val = val.split('/').pop();
+                let _this = $(this),
+                    val = _this.val().split('/').pop(),
+                    form = _this.closest('form'),
+                    url = form.attr('data-get-tweet-url').replace('#', val);
 
                 $('.save-tweet').prop('disabled', true);
 
@@ -43,7 +48,7 @@
                 }
 
                 $.ajax({
-                    url: '/admin/tweet/' + val,
+                    url: url,
                     beforeSend: function() {
                         $('#result').css({
                             'opacity': '.2',
@@ -55,13 +60,13 @@
                         })
                     }
                 })
-                .fail(function () {
-                    $('#result').html('<div style="min-width: 600px; min-height: 600px; background: #ccc; text-align: center; vertical-align: middle">No tweets</div>');
-                })
-                .done(function(data){
-                    $('#result').html($(data).html());
-                    $('.save-tweet').prop('disabled', false);
-                });
+                    .fail(function () {
+                        $('#result').html('<div style="min-width: 600px; min-height: 600px; background: #ccc; text-align: center; vertical-align: middle">No tweets</div>');
+                    })
+                    .done(function(data){
+                        $('#result').html($(data).html());
+                        $('.save-tweet').prop('disabled', false);
+                    });
             })
         });
     </script>
