@@ -24,7 +24,7 @@ class Tweet extends Model
         'json'        => 'array',
     ];
 
-    public function getMediaAttribute($value)
+    public function getMediaAttribute()
     {
         return $this->getFromMeta('media');
     }
@@ -32,6 +32,11 @@ class Tweet extends Model
     public function getFromMeta(string $key)
     {
         return find_in_arr_recursive($this->json, $key);
+    }
+
+    public function scopeApproved($query, $value = true)
+    {
+        return $query->where('approved', $value)->orderBy('created_at','desc');
     }
 
     public static function saveById($id){

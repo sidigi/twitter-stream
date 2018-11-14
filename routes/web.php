@@ -1,6 +1,4 @@
 <?php
-Route::get('twitter-api/tweet/{id}', 'TwitterApiController@get')->name('twitter-api.tweet.get');
-
 Route::group([
         'prefix' => 'admin',
         'middleware' => 'auth',
@@ -14,6 +12,9 @@ Route::group([
         Route::post('tweets/{tweet}/unapprove', 'TweetController@unapprove')->name('tweets.unapprove');
         Route::post('tweets/{tweet}/moderate', 'TweetController@moderate')->name('tweets.moderate');
         Route::resource('tweets', 'TweetController');
+
+        Route::get('twitter-api/tweet/{id}', 'TwitterApiController@show')->name('api.twitter.tweet.show');
+        Route::get('api/twitter/tweet/{id}', 'TwitterApiController@get')->name('api.twitter.tweet.get');
 });
 
 Route::group([

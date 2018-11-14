@@ -9,7 +9,7 @@ class TestController extends Controller
 {
     public function index()
     {
-        $tweets = Tweet::where('approved',1)->orderBy('created_at','desc')->take(25)->get();
+        $tweets = Tweet::where('approved',1)->approved()->orderBy('created_at','desc')->take(25)->get();
 
         $mainTweet = $subTweet = null;
 

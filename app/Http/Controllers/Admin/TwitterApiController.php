@@ -1,6 +1,7 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Tweet;
 use Thujohn\Twitter\Facades\Twitter;
 
@@ -19,7 +20,7 @@ class TwitterApiController extends Controller
         $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
         $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
 
-        $tweet = new Tweet([
+        return new Tweet([
             'id' => $tweet['id_str'],
             'json' => $tweet + $extendedTweet,
             'tweet_text' => $tweet_text,
@@ -29,7 +30,10 @@ class TwitterApiController extends Controller
             'approved' => false,
             'moderated' => false,
         ]);
+    }
 
-        return view('twitter-api.detail', ['tweet' => $tweet]);
+    public function show($id)
+    {
+        return view('twitter-api.detail', ['tweet' => $this->get($id)]);
     }
 }

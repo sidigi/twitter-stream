@@ -20,7 +20,7 @@
 
     <form method="POST"
           action="{{ route('admin.tweets.store') }}"
-          data-get-tweet-url="{{ route('twitter-api.tweet.get', '#') }}"
+          data-get-tweet-url="{{ route('admin.api.twitter.tweet.show', '#') }}"
     >
 
         {{ csrf_field() }}
