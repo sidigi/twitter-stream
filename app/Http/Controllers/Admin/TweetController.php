@@ -10,17 +10,9 @@ class TweetController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->hasRole('manager')) {
-            $tweets = Tweet::orderBy('created_at','desc')->paginate(25);
+        $tweets = Tweet::paginate(25);
 
-            $tweets->map(function ($item, $key){
-                $item->tweet_text = preg_replace("/([\w]+\:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/", "<a target=\"_blank\" href=\"$1\">$1</a>", $item->tweet_text);
-                $item->tweet_text = preg_replace("/#([A-Za-z0-9\/\.]*)/", "<a target=\"_new\" href=\"http://twitter.com/search?q=$1\">#$1</a>", $item->tweet_text);
-                $item->tweet_text = preg_replace("/@([A-Za-z0-9\/\.]*)/", "<a href=\"http://www.twitter.com/$1\">@$1</a>", $item->tweet_text);
-            });
-
-            return view('admin.tweets.index', compact('tweets'));
-        }
+        return view('admin.tweets.index', compact('tweets'));
     }
 
     public function create()
@@ -30,24 +22,17 @@ class TweetController extends Controller
 
     public function store(Request $request)
     {
-        $msg = \App\Service\TwitterService::addFromForm($request->tweet);
+        $tweetId = collect(explode('/', $request->tweet))->filter()->last();
 
-        return redirect()->back()->with(['success'=> $msg]);
-    }
+        $tweet = (new TwitterApiController())->get($tweetId);
 
-    public function show(Tweet $tweet)
-    {
+        try{
+            $tweet->save();
 
-    }
-
-    public function edit(Tweet $tweet)
-    {
-
-    }
-
-    public function update(Request $request, Tweet $tweet)
-    {
-
+            return redirect()->back()->with(['success'=> "Tweet with id {$tweetId} was saved"]);
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors([$e->getMessage()]);
+        }
     }
 
     public function destroy(Tweet $tweet)
@@ -61,15 +46,15 @@ class TweetController extends Controller
         $tweet->save();
     }
 
-    public function moderate(Tweet $tweet)
-    {
-        $tweet->moderated = true;
-        $tweet->save();
-    }
-
     public function unApprove(Tweet $tweet)
     {
         $tweet->approved = false;
+        $tweet->save();
+    }
+
+    public function moderate(Tweet $tweet)
+    {
+        $tweet->moderated = true;
         $tweet->save();
     }
 }

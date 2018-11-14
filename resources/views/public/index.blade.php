@@ -3,7 +3,7 @@
 @section('content')
 	@if (!auth()->guest())
 		<div style="display: block; position: fixed; width: 100px; height: 50px; cursor: pointer; z-index: 222; bottom: 20px; left: 20px">
-			<a href="/admin" class="btn btn-primary">Back</a>
+			<a href="/admin" class="btn btn-primary">Back to admin panel</a>
 		</div>
 	@endif
 

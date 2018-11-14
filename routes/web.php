@@ -1,7 +1,7 @@
 <?php
 Route::group([
         'prefix' => 'admin',
-        'middleware' => 'auth',
+        'middleware' => ['auth', 'manager'],
         'as' => 'admin.',
         'namespace' => 'Admin'
     ], function () {
@@ -20,7 +20,7 @@ Route::group([
 Route::group([
     'namespace' => 'Pub'
 ], function () {
-    Route::get('/', 'TweetController@index');
+    Route::get('/', 'TweetController@index')->name('home');
 });
 
 Auth::routes();

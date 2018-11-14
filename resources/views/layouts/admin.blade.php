@@ -133,7 +133,7 @@
 		            <div class="collapse navbar-collapse" id="app-navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="/admin">
+								<a href="{{ route('home') }}">
 									Home
 								</a>
 							</li>
@@ -147,24 +147,25 @@
 									Add tweet
 								</a>
 							</li>
+
 							<li class="dropdown">
-								<a href="{{ route('admin.test.index') }}">
-									Test
-								</a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+											{{ auth()->user()->name }}
+										</a>
+									</li>
+									<li>
+										<a href="{{ url('/logout') }}"
+										   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
+										</a>
+										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+											{{ csrf_field() }}
+										</form>
+									</li>
+								</ul>
 							</li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ auth()->user()->name }}
-                                </a>
-                            </li>
-	                        <li class="dropdown">
-	                            <a href="{{ url('/logout') }}"
-	                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
-	                            </a>
-		                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-			                        {{ csrf_field() }}
-		                        </form>
-	                        </li>
                         </ul>
 		            </div>
 			    </div>
@@ -187,5 +188,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>

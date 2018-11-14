@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Thujohn\Twitter\Facades\Twitter;
 
@@ -24,9 +25,27 @@ class Tweet extends Model
         'json'        => 'array',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('latest', function (Builder $builder) {
+            $builder->orderBy('created_at','desc');
+        });
+    }
+
     public function getMediaAttribute()
     {
         return $this->getFromMeta('media');
+    }
+
+    public function getTweetTextAttribute($value)
+    {
+        $value = preg_replace("/([\w]+\:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/", "<a target=\"_blank\" href=\"$1\">$1</a>", $value);
+        $value = preg_replace("/#([A-Za-z0-9\/\.]*)/", "<a target=\"_new\" href=\"http://twitter.com/search?q=$1\">#$1</a>", $value);
+        $value = preg_replace("/@([A-Za-z0-9\/\.]*)/", "<a href=\"http://www.twitter.com/$1\">@$1</a>", $value);
+
+        return $value;
     }
 
     public function getFromMeta(string $key)
@@ -41,40 +60,6 @@ class Tweet extends Model
 
     public function scopeApproved($query, $value = true)
     {
-        return $query->where('approved', $value)->orderBy('created_at','desc');
-    }
-
-    public static function saveById($id){
-        if (! $id){
-            throw new \Exception('Tweet id not found');
-        }
-
-        $tweet = (array) Twitter::getTweet($id);
-        $tweet = json_decode(json_encode($tweet), true);
-
-        $extendedTweet = (array) Twitter::getTweet($id, ['tweet_mode' => 'extended']);
-        $extendedTweet = json_decode(json_encode($extendedTweet), true);
-
-        $tweet_text = isset($tweet['text']) ? $tweet['text'] : null;
-        $user_id = isset($tweet['user']['id_str']) ? $tweet['user']['id_str'] : null;
-        $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
-        $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
-
-        if (isset($tweet['id'])) {
-            self::updateOrCreate(['id' => $tweet['id']], [
-                'id' => $tweet['id_str'],
-                'json' => json_encode($tweet + $extendedTweet),
-                'tweet_text' => $tweet_text,
-                'user_id' => $user_id,
-                'user_screen_name' => $user_screen_name,
-                'user_avatar_url' => $user_avatar_url,
-                'approved' => false,
-                'moderated' => false,
-            ]);
-
-            return "updated tweet with id {$tweet['id']}";
-        }
-
-        return 'tweet not found';
+        return $query->where('approved', $value);
     }
 }

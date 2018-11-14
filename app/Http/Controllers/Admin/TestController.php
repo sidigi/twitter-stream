@@ -9,10 +9,10 @@ class TestController extends Controller
 {
     public function index()
     {
-        $tweets = Tweet::where('approved',1)->approved()->orderBy('created_at','desc')->take(25)->get();
+        $tweets = Tweet::approved()
+            ->take(25)
+            ->get();
 
-        $mainTweet = $subTweet = null;
-
-        return view('public.index', compact('tweets', 'mainTweet', 'subTweet'));
+        return view('public.index', compact('tweets'));
     }
 }
