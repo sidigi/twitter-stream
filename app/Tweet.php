@@ -31,7 +31,12 @@ class Tweet extends Model
 
     public function getFromMeta(string $key)
     {
-        return find_in_arr_recursive($this->json, $key);
+        $json = $this->json;
+        if (! is_array($json)){
+            $json = json_decode($json, true);
+        }
+
+        return find_in_arr_recursive($json, $key);
     }
 
     public function scopeApproved($query, $value = true)
