@@ -1,0 +1,107 @@
+.loading {
+  background-color: #ffffff;
+  background-image: url("http://loadinggif.com/images/image-selection/3.gif");
+  background-size: 25px 25px;
+  background-position:right center;
+  background-repeat: no-repeat;
+}
+.tweet {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+@font-face {
+  font-family: light;
+  src: url("/fonts/Proxima Nova Light.otf?076d851b602b9915c429f3a2e436c639");
+  src: local(light);
+  src: url("/fonts/Proxima Nova Light.otf?076d851b602b9915c429f3a2e436c639") format("opentype");
+}
+
+@font-face {
+  font-family: regular;
+  src: url("/fonts/Proxima Nova Regular.otf?410504d49238e955ba7dc23a7f963021");
+  src: local(regular);
+  src: url("/fonts/Proxima Nova Regular.otf?410504d49238e955ba7dc23a7f963021") format("opentype");
+}
+
+@font-face {
+  font-family: bold;
+  src: url("/fonts/Proxima Nova Bold.otf?62d4d7d369292a9bf23762465ec6d704");
+  src: local(bold);
+  src: url("/fonts/Proxima Nova Bold.otf?62d4d7d369292a9bf23762465ec6d704") format("opentype");
+}
+
+@font-face {
+  font-family: extrabold;
+  src: url("/fonts/Proxima Nova Extrabold.otf?b4f9eb8ce027016ab9b9860817451d07");
+  src: local(extrabold);
+  src: url("/fonts/Proxima Nova Extrabold.otf?b4f9eb8ce027016ab9b9860817451d07") format("opentype");
+}
+
+body {
+  background: #e7ecef;
+  font-family: regular, sans-serif;
+}
+
+.container-wide {
+  width: 1400px;
+  margin: 0 auto;
+}
+
+.container-wide h1 {
+  color: #707070;
+  font-size: 4em;
+  margin: 80px auto 60px;
+  font-family: regular, sans-serif;
+}
+
+.posts {
+  padding: 0 40px;
+}
+
+.posts .post {
+  margin-bottom: 30px;
+}
+
+.posts .post-header .user {
+  overflow: hidden;
+}
+
+.posts .post-header .user img {
+  float: left;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.posts .post-header .name {
+  font-size: 1.4em;
+  margin: 12px 0 0 15px;
+  float: left;
+  font-weight: bold;
+}
+
+.posts .post-header .created {
+  float: left;
+  margin: 15px 0 0 15px;
+  color: #8e8e8e;
+  font-size: 1.2em;
+}
+
+.posts .post-body {
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+.posts .post-media {
+  margin: 20px 0 50px;
+}
+
+.posts .post-media img {
+  max-width: 100%;
+}
+
+.unread{
+  background: #baffbe;;
+}

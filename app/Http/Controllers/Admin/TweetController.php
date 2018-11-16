@@ -26,6 +26,11 @@ class TweetController extends Controller
 
         $tweet = (new TwitterApiController())->get($tweetId);
 
+        if ($request->has('approve')){
+            $tweet->approved = true;
+            $tweet->moderated= true;
+        }
+
         try{
             $tweet->save();
 

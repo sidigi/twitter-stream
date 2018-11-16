@@ -40,12 +40,4 @@
 			</div>
 		</div>
 	</section>
-	<script>
-        $(function(){
-            $('.tweets-masonry').masonry({
-                itemSelector: '.tweet-box'
-            });
-        });
-	</script>
-
 @endsection

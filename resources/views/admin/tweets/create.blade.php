@@ -1,73 +1,53 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div class="row twitter-answer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-3">
+                    @if (\Session::has('success'))
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> {!! \Session::get('success') !!}. See on <a href="{{ route('admin.tweets.index') }}">Tweets</a>
+                        </div>
+                    @endif
 
-    <div id="result">
-        <div style="min-width: 600px; min-height: 600px; background: #ccc; text-align: center; vertical-align: middle">No tweets</div>
-    </div><br>
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Danger!</strong> {{$errors->first()}}
+                        </div>
+                    @endif
 
-    @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <strong>Success!</strong> {!! \Session::get('success') !!}
+                    <form method="POST"
+                          action="{{ route('admin.tweets.store') }}"
+                          data-get-tweet-url="{{ route('admin.api.twitter.tweet.show', '#') }}"
+                    >
+
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="tweet">Tweet</label>
+                            <input type="text" name="tweet" class="form-control" id="tweet" aria-describedby="tweet" placeholder="Enter tweet">
+                            <small id="tweet" class="form-text text-muted">Tweet URL or tweet ID. Example: https://twitter.com/BGSgroup_eu/status/1062229951502524416</small>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input name="approve" type="checkbox" class="form-check-input" id="approve">
+                                <label class="form-check-label" for="approve">Approve after save</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary save-tweet" disabled>Save</button>
+                    </form>
+
+                    <br>
+
+                    <div class="tweet-list">
+                        <div class="tweet row" >
+                            <div class="col-xs-8">
+                                <div id="result">No tweets was found</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endif
-
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <strong>Danger!</strong> {{$errors->first()}}
-        </div>
-    @endif
-
-    <form method="POST"
-          action="{{ route('admin.tweets.store') }}"
-          data-get-tweet-url="{{ route('admin.api.twitter.tweet.show', '#') }}"
-    >
-
-        {{ csrf_field() }}
-        <div class="form-group">
-            <label for="tweet">Tweet</label>
-            <input type="text" name="tweet" class="form-control" id="tweet" aria-describedby="tweet" placeholder="Enter tweet">
-            <small id="tweet" class="form-text text-muted">Tweet URL or tweet ID. Example: https://twitter.com/BGSgroup_eu/status/1062229951502524416</small>
-        </div>
-        <button type="submit" class="btn btn-primary save-tweet" disabled>Save</button>
-    </form>
-
-
-    <script>
-        $(function(){
-            $(document).on('keyup', '#tweet', function(){
-                let _this = $(this),
-                    val = _this.val().split('/').pop(),
-                    form = _this.closest('form'),
-                    url = form.attr('data-get-tweet-url').replace('#', val);
-
-                $('.save-tweet').prop('disabled', true);
-
-                if (val.length <= 3){
-                    return;
-                }
-
-                $.ajax({
-                    url: url,
-                    beforeSend: function() {
-                        $('#result').css({
-                            'opacity': '.2',
-                        })
-                    },
-                    complete: function() {
-                        $('#result').css({
-                            'opacity': '1',
-                        })
-                    }
-                })
-                    .fail(function () {
-                        $('#result').html('<div style="min-width: 600px; min-height: 600px; background: #ccc; text-align: center; vertical-align: middle">No tweets</div>');
-                    })
-                    .done(function(data){
-                        $('#result').html($(data).html());
-                        $('.save-tweet').prop('disabled', false);
-                    });
-            })
-        });
-    </script>
+    </div>
 @endsection
