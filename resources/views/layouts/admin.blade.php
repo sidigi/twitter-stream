@@ -31,6 +31,11 @@
 								</a>
 							</li>
 							<li class="dropdown">
+								<a href="{{ route('admin.background-images.index') }}">
+									Background images
+								</a>
+							</li>
+							<li class="dropdown">
 								<a href="{{ route('admin.tweets.create') }}">
 									Add tweet
 								</a>

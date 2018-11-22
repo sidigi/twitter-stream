@@ -15,6 +15,8 @@ Route::group([
 
         Route::get('twitter-api/tweet/{id}', 'TwitterApiController@show')->name('api.twitter.tweet.show');
         Route::get('api/twitter/tweet/{id}', 'TwitterApiController@get')->name('api.twitter.tweet.get');
+
+        Route::resource('background-images', 'BackgroundImageController');
 });
 
 Route::group([
