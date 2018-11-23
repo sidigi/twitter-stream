@@ -8,10 +8,29 @@
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-	<div>
-		@yield('content')
-	</div>
+    <div style="height: 100%; width: 100%">
+        <div style="height: 100%; width: 100%" class="app-wrapper">
+            <div class="app-mode" data-app-mode="{{$appMode}}"></div>
 
-	<script src="{{ elixir('js/app.js') }}"></script>
+            @if ($appMode === 'image' && $appImage)
+                <div class="imgbox">
+                    <img src="{{$appImage}}" alt="" class="center-fit">
+                </div>
+            @else
+                @if ($appMode === 'tweet-list')
+                    @yield('content')
+                @endif
+            @endif
+        </div>
+    </div>
+
+
+    @if (!auth()->guest())
+        <div style="display: block; position: fixed; width: 100px; height: 50px; cursor: pointer; z-index: 222; bottom: 20px; left: 20px">
+            <a href="/admin" class="btn btn-primary">Back to admin panel</a>
+        </div>
+    @endif
+
+    <script src="{{ elixir('js/app.js') }}"></script>
 </body>
 </html>

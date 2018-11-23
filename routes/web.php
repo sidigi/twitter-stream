@@ -16,13 +16,19 @@ Route::group([
         Route::get('twitter-api/tweet/{id}', 'TwitterApiController@show')->name('api.twitter.tweet.show');
         Route::get('api/twitter/tweet/{id}', 'TwitterApiController@get')->name('api.twitter.tweet.get');
 
+        Route::post('background-images/file-upload', 'BackgroundImageController@fileUpload')->name('background-image.file-upload');
+        Route::post('background-images/active', 'BackgroundImageController@activeImage')->name('background-image.active-image');
+        Route::delete('background-images/delete', 'BackgroundImageController@deleteImage')->name('background-image.delete-image');
         Route::resource('background-images', 'BackgroundImageController');
+
+        Route::post('app/change-mode', 'AppController@changeMode')->name('app.change-mode');
 });
 
 Route::group([
     'namespace' => 'Pub'
 ], function () {
-    Route::get('/', 'TweetController@index')->name('home');
+    Route::get('/', 'MainController@index')->name('home');
+    Route::get('/tweets', 'TweetController@index')->name('tweets');
 });
 
 Auth::routes();

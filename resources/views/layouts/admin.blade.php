@@ -31,16 +31,20 @@
 								</a>
 							</li>
 							<li class="dropdown">
+								<a href="{{ route('admin.tweets.create') }}">
+									Add tweet
+								</a>
+							</li>
+							<li class="dropdown">
 								<a href="{{ route('admin.background-images.index') }}">
 									Background images
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="{{ route('admin.tweets.create') }}">
-									Add tweet
+								<a href="{{ route('admin.background-images.create') }}">
+									Add background image
 								</a>
 							</li>
-
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
 								<ul class="dropdown-menu">
@@ -64,6 +68,12 @@
 			    </div>
 		    </nav>
         @endif
+
+		@if($appMode == 'image')
+			<div class="alert alert-warning" style="margin-top: -25px">
+				<strong>Warning!</strong> Background image is shown instead of tweet list <a href="{{ route('admin.background-images.index') }}">Backgrounds</a>
+			</div>
+		@endif
 
         <div class="container-wide">
 	        <section class="container-fluid">

@@ -13,6 +13,6 @@ class TweetController extends Controller
             ->take(25)
             ->get();
 
-        return view('public.index', compact('tweets'));
+        return view('public.tweets.index', compact('tweets'));
     }
 }

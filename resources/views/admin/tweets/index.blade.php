@@ -31,7 +31,7 @@
                             @foreach($tweets as $tweet)
                                 <div data-moderate-url="{{ route('admin.tweets.moderate', $tweet) }}"
                                      data-tweet-id="{{$tweet->id}}"
-                                     class="tweet row @if (!$tweet->moderated) unread @endif" >
+                                     class="tweet card row @if (!$tweet->moderated) unread @endif" >
                                     <div class="col-xs-8">
                                         @include('admin.tweets.detail')
                                     </div>

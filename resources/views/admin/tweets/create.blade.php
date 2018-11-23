@@ -40,7 +40,7 @@
                     <br>
 
                     <div class="tweet-list">
-                        <div class="tweet row" >
+                        <div class="tweet card row" >
                             <div class="col-xs-8">
                                 <div id="result">No tweets was found</div>
                             </div>

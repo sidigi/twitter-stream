@@ -67,6 +67,52 @@ $(document).on('change', '#auto-reload', function(event){
 
 });
 
+$(document).on('change', '.active-image', function(event){
+    event.preventDefault();
+
+    var _this = $(this),
+        form = _this.closest('form');
+
+    _this.closest('.images-list').find('input[type="radio"]').prop('checked', false);
+    _this.prop('checked', true);
+
+    $.ajax({
+        url: form.attr('action'),
+        type: form.attr('method'),
+        data: form.serialize() + '&_token=' + token,
+        beforeSend: function() {
+            _this.closest('.card').css({
+                'opacity': '.1',
+            })
+        },
+        complete: function() {
+            _this.closest('.card').css({
+                'opacity': '1',
+            })
+        }
+    });
+
+    return false;
+});
+
+$(document).on('change', '.app-mode-image', function(event){
+    event.preventDefault();
+
+    var _this = $(this),
+        form = _this.closest('form');
+
+    $.ajax({
+        url: form.attr('action'),
+        type: form.attr('method'),
+        data: form.serialize() + '&_token=' + token,
+        complete: function() {
+            location.reload();
+        }
+    });
+
+    return false;
+});
+
 $(document).on('change', '.approve-action', function(event){
     event.preventDefault();
 
@@ -125,6 +171,30 @@ $(document).on('click', '.delete-tweet', function(event){
             },
             complete: function() {
                 tweet.remove();
+            }
+        })
+    }
+    event.preventDefault();
+});
+
+$(document).on('click', '.delete-image', function(event){
+    if (confirm('Are you shure?')){
+        var
+            _this = $(this),
+            card = _this.closest('.card'),
+            form = _this.closest('form');
+
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: form.serialize() + '&_token=' + token,
+            beforeSend: function() {
+                card.css({
+                    'opacity': '.1',
+                })
+            },
+            complete: function() {
+                card.remove();
             }
         })
     }
