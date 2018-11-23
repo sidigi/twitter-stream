@@ -7,10 +7,13 @@
                 <div class="col-md-8 col-md-offset-3">
 
                     <div class="tweet-list">
-
                         <div class="row">
-                            <div class="form-group">
+                            <div class="form-group" style="display: flex;justify-content: space-between;">
                                 <a class="btn btn-primary reload">Reload</a>
+                                <form id="delete-no-moderated" action="{{route('admin.tweets.delete-no-moderated')}}" method="post">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-danger">Delete no moderated tweets </button>
+                                </form>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-2">
@@ -26,6 +29,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <br>
                         <div class="ajax-wr">
                             @foreach($tweets as $tweet)

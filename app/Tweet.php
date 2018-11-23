@@ -62,4 +62,10 @@ class Tweet extends Model
     {
         return $query->where('approved', $value);
     }
+
+    public function scopeModerated($query, $value = true)
+    {
+        return $query
+            ->where('moderated', $value);
+    }
 }

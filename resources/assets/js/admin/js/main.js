@@ -113,6 +113,14 @@ $(document).on('change', '.app-mode-image', function(event){
     return false;
 });
 
+$("#delete-no-moderated").submit(function( event ) {
+    if (confirm('Delete all tweets with no moderate?')){
+        return true;
+    }
+
+    event.preventDefault();
+});
+
 $(document).on('change', '.approve-action', function(event){
     event.preventDefault();
 

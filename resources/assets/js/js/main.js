@@ -24,11 +24,15 @@ setInterval(function(){
                 appMode = mode;
                 return;
             }else{
-                if (mode === 'image' && $('.page-wrapper').length){
+                if (mode === 'tweet-list' && $('.page-wrapper').length){
                     $('.page-wrapper').html($(data).find('.page-wrapper').html());
                     msnry = new Masonry('.tweets-masonry', {
                         itemSelector: '.tweet-box'
                     });
+                }
+
+                if (mode === 'image'){
+                    $('.app-wrapper').html($(data).find('.app-wrapper'));
                 }
             }
         }

@@ -11,6 +11,7 @@ Route::group([
         Route::post('tweets/{tweet}/approve', 'TweetController@approve')->name('tweets.approve');
         Route::post('tweets/{tweet}/unapprove', 'TweetController@unapprove')->name('tweets.unapprove');
         Route::post('tweets/{tweet}/moderate', 'TweetController@moderate')->name('tweets.moderate');
+        Route::post('tweets/delete-no-moderated', 'TweetController@deleteNoModerate')->name('tweets.delete-no-moderated');
         Route::resource('tweets', 'TweetController');
 
         Route::get('twitter-api/tweet/{id}', 'TwitterApiController@show')->name('api.twitter.tweet.show');

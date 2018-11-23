@@ -62,4 +62,10 @@ class TweetController extends Controller
         $tweet->moderated = true;
         $tweet->save();
     }
+
+    public function deleteNoModerate(){
+        Tweet::moderated(false)->delete();
+
+        return redirect()->route('admin.tweets.index');
+    }
 }
