@@ -180,8 +180,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -231,9 +229,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'TwitterStreamingApi' => Spatie\LaravelTwitterStreamingApi\TwitterStreamingApiFacade::class,
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
-
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

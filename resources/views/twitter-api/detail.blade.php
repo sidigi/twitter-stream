@@ -9,11 +9,11 @@
                 View on Twitter
             </a></p>
         @if($tweet->media)
-        <div class="post-media">
-            @foreach($tweet->media as $media)
-            <img src="{{ $media['media_url'] }}" alt="" class="img-responsive">
-            @endforeach
-        </div>
+            <div class="post-media">
+                @foreach($tweet->media as $media)
+                <img src="{{ $media['media_url'] }}" alt="" class="img-responsive">
+                @endforeach
+            </div>
         @endif
     </div>
 </div>

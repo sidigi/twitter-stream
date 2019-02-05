@@ -7638,6 +7638,21 @@ button.close {
   }
 }
 
+.loading {
+  background-color: #ffffff;
+  background-image: url("http://loadinggif.com/images/image-selection/3.gif");
+  background-size: 25px 25px;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+.card {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
 @font-face {
   font-family: light;
   src: url("/fonts/Proxima Nova Light.otf?076d851b602b9915c429f3a2e436c639");
@@ -7666,113 +7681,71 @@ button.close {
   src: url("/fonts/Proxima Nova Extrabold.otf?b4f9eb8ce027016ab9b9860817451d07") format("opentype");
 }
 
-body, html {
-  height: 100%;
-}
-
-.imgbox {
-  display: -ms-grid;
-  display: grid;
-  height: 100%;
-}
-
-.center-fit {
-  max-width: 100%;
-  max-height: 100vh;
-  margin: auto;
-}
-
 body {
   background: #e7ecef;
   font-family: regular, sans-serif;
-  font-size: 2em;
 }
 
-h1 {
-  margin-bottom: 22px;
+.container-wide {
+  width: 1400px;
+  margin: 0 auto;
 }
 
-h1, .tweet-title {
-  color: #000;
+.container-wide h1 {
+  color: #707070;
+  font-size: 4em;
+  margin: 80px auto 60px;
+  font-family: regular, sans-serif;
 }
 
-.tweet-title, .tweet-time {
-  font-size: 1.1em;
+.posts {
+  padding: 0 40px;
 }
 
-.tweeter-stream h3 {
-  text-transform: unset;
-  text-align: center;
+.posts .post {
+  margin-bottom: 30px;
 }
 
-.tweeter-stream h2 {
-  text-align: center;
+.posts .post-header .user {
+  overflow: hidden;
 }
 
-.tweets-masonry {
-  margin-left: -7px;
-  margin-right: -7px;
-}
-
-.tweet-box {
-  margin-bottom: 14px;
-  padding-left: 7px;
-  padding-right: 7px;
-}
-
-.tweet {
-  padding: 10px;
-  -webkit-transition: 1s ease all;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-  background-color: #F9F9F9;
-}
-
-.tweet .tweet-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.tweet .tweet-header .tweet-icon {
-  width: 40px;
-  max-width: 40px;
-  min-width: 40px;
-  height: 40px;
-  max-height: 40px;
-  min-height: 40px;
+.posts .post-header .user img {
+  float: left;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  border: 1px solid #dcdcdc;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
 }
 
-.tweet .tweet-header .tweet-title {
-  margin: 0;
+.posts .post-header .name {
+  font-size: 1.4em;
+  margin: 12px 0 0 15px;
+  float: left;
   font-weight: bold;
 }
 
-.tweet .tweet-header .tweet-time {
-  font-size: .8em;
-  min-width: 5em;
-  text-align: right;
-  color: gray;
-  margin-left: auto;
+.posts .post-header .created {
+  float: left;
+  margin: 15px 0 0 15px;
+  color: #8e8e8e;
+  font-size: 1.2em;
 }
 
-.tweet .tweet-header .tweet-icon + .tweet-title {
-  margin-left: 10px;
+.posts .post-body {
+  font-size: 1.2em;
+  line-height: 1.4;
 }
 
-.tweet .tweet-body .tweet-image {
-  width: 100%;
+.posts .post-media {
+  margin: 20px 0 50px;
 }
 
-.tweet .tweet-body .tweet-image + .tweet-message {
-  margin-top: 10px;
+.posts .post-media img {
+  max-width: 100%;
 }
 
-/*# sourceMappingURL=app.css.map */
+.unread {
+  background: #baffbe;
+}
+
+/*# sourceMappingURL=admin.css.map */
