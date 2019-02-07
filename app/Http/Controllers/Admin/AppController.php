@@ -9,12 +9,10 @@ use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
-    public function changeMode(Request $request){
-        $mode = 'tweets';
+    public function changeMode(Request $request): void
+    {
         if ($request->has('mode')) {
-            $mode = $request->mode;
+            Option::setMode($request->mode);
         }
-
-        Option::set('app-mode', $mode);
     }
 }

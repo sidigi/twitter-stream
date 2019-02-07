@@ -29,13 +29,6 @@ class AppServiceProvider extends ServiceProvider
 
     private function initAppMode()
     {
-        $mode = Option::get('app-mode');
 
-        view()->composer('*', function ($view) use ($mode){
-            $view->with('appMode', $mode);
-
-            $image = Option::get('active-background-image');
-            $view->with('appImage', $image);
-        });
     }
 }

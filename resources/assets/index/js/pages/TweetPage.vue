@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-center">
-                        <h1>Twitter stream <b>#PRCRussiaCIS2018</b></h1>
+                        <h1>Twitter stream <b v-text="title"></b></h1>
                     </div>
                 </div>
             </div>
@@ -19,6 +19,10 @@
     import TweetList from '../components/TweetList'
 
     export default {
+        props: {
+            'title': String
+        },
+
         components: {
             TweetList
         }

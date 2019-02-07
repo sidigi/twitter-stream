@@ -2,6 +2,7 @@
     <div>
         <tweet-page
             v-if="isTweetMode"
+            :title="title"
         ></tweet-page>
         <image-page
             v-if="isImageMode"
@@ -11,6 +12,9 @@
 
 <script>
     export default {
+        props: {
+            'title': String
+        },
         mounted () {
             this.$store.dispatch('getConfig');
             this.$store.dispatch('expectConfig');

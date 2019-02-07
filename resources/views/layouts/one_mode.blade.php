@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         @if ($mode === \App\Models\Option\Option::TWEETS_MODE)
-            <tweet-page></tweet-page>
+            <tweet-page :title="{{ config('app.name', 'EPOCH2018') }}"></tweet-page>
         @endif
 
         @if ($mode === \App\Models\Option\Option::IMAGES_MODE)
@@ -25,6 +25,7 @@
             <a href="{{ route('admin.index') }}" class="btn btn-primary">Back to admin panel</a>
         </div>
     @endif
+
     <script src="{{ mix('build/index/js/app.js') }}"></script>
 </body>
 </html>
