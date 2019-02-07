@@ -1,17 +1,15 @@
 <?php
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\Pub;
 
 use App\Http\Controllers\Controller;
-use App\Tweet;
+use App\Models\Tweet\Tweet;
 
 class MainController extends Controller
 {
     public function index()
     {
-        $tweets = Tweet::approved()
-            ->take(25)
-            ->get();
-
-        return view('public.index', compact('tweets'));
+        return view('layouts.public');
     }
 }

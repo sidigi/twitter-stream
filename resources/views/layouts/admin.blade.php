@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <title>{{ config('app.name', 'EPOCH2018') }}</title>
-	<link rel="stylesheet" href="{{ elixir('css/admin.css') }}">
+	<link rel="stylesheet" href="{{ mix('build/admin/css/app.css') }}">
 </head>
 <body>
         @if (!auth()->guest())
@@ -90,7 +90,7 @@
         </div>
 
     <!-- Scripts -->
-    <script src="{{ elixir('js/admin.js') }}"></script>
+    <script src="{{ mix('build/admin/js/app.js') }}"></script>
 	@yield('scripts')
 </body>
 </html>

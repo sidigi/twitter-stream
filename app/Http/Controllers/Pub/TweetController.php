@@ -1,18 +1,15 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Pub;
 
 use App\Http\Controllers\Controller;
-use App\Tweet;
+use App\Models\Option\Option;
 
 class TweetController extends Controller
 {
     public function index()
     {
-        $tweets = Tweet::approved()
-            ->take(25)
-            ->get();
-
-        return view('public.tweets.index', compact('tweets'));
+        return view('layouts.one_mode', ['mode' => Option::TWEETS_MODE]);
     }
 }

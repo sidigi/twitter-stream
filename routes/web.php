@@ -30,6 +30,7 @@ Route::group([
 ], function () {
     Route::get('/', 'MainController@index')->name('home');
     Route::get('/tweets', 'TweetController@index')->name('tweets');
+    Route::get('/background-images', 'ImagesController@index')->name('images');
 });
 
 Auth::routes();

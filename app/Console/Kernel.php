@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('inspire')->hourly();
-         $schedule->command('twitter:listen-for-hash-tags')->appendOutputTo(storage_path('logs/twitter-stream.log'));
+        $schedule->command('twitter:listen-for-hash-tags')->appendOutputTo(storage_path('logs/twitter-stream.log'));
     }
 
     /**
@@ -36,6 +36,8 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
+        $this->load(__DIR__.'/Commands');
+
         require base_path('routes/console.php');
     }
 }
