@@ -65,4 +65,9 @@ class Option extends Model
     {
         self::set(self::ACTIVE_IMAGE_KEY, (string) $id);
     }
+
+    public static function getMode(): ?string
+    {
+        return self::get(self::MODE_KEY);
+    }
 }

@@ -11,7 +11,7 @@ class ConfigController
     public function get(): Config
     {
         return new Config([
-            'mode' => Option::get('mode')
+            'mode' => Option::getMode()
         ]);
     }
 }

@@ -17,9 +17,10 @@ Route::group([
         Route::get('api/twitter/tweet/{id}', 'TwitterApiController@get')->name('api.twitter.tweet.get');
 
         Route::post('background-images/file-upload', 'BackgroundImageController@store')->name('background-image.store');
-        Route::post('background-images/active', 'BackgroundImageController@active')->name('background-image.active');
-        Route::delete('background-images/{image}', 'BackgroundImageController@destroy')->name('background-image.destroy');
-        Route::resource('background-images', 'BackgroundImageController');
+        Route::post('background-images/{image}active', 'BackgroundImageController@active')->name('background-image.active');
+        Route::resource('background-images', 'BackgroundImageController')->parameters([
+            'background-images' => 'image'
+        ]);
 
         Route::post('app/change-mode', 'AppController@changeMode')->name('app.change-mode');
 });

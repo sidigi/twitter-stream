@@ -21,11 +21,6 @@
 		            <div class="collapse navbar-collapse" id="app-navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="{{ route('home') }}">
-									Home
-								</a>
-							</li>
-							<li class="dropdown">
 								<a href="{{ route('admin.tweets.index') }}">
 									Tweets
 								</a>
@@ -41,9 +36,24 @@
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="{{ route('admin.background-images.create') }}">
-									Add background image
-								</a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Public <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li class="dropdown">
+										<a  href="{{ route('home') }}">
+											Home
+										</a>
+									</li>
+									<li class="dropdown">
+										<a href="{{ route('tweets') }}">
+											Tweets only
+										</a>
+									</li>
+									<li class="dropdown">
+										<a href="{{ route('images') }}">
+											Images only
+										</a>
+									</li>
+								</ul>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>

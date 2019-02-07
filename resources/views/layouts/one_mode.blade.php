@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         @if ($mode === \App\Models\Option\Option::TWEETS_MODE)
-            <tweet-page :title="{{ config('app.name', 'EPOCH2018') }}"></tweet-page>
+            <tweet-page :title="{{ json_encode(config('app.name', 'EPOCH2018')) }}"></tweet-page>
         @endif
 
         @if ($mode === \App\Models\Option\Option::IMAGES_MODE)
