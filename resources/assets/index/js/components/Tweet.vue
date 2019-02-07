@@ -11,7 +11,7 @@
                 <template v-for="item in media">
                     <img class="tweet-image" :src="item['media_url']" alt="" v-if="isImage(item)">
 
-                    <video v-if="isVideo(item)" style="width:600px;max-width:100%;" controls="" autoplay="autoplay" muted loop>
+                    <video v-if="isVideo(item)" style="width:600px;max-width:100%;" autoplay="autoplay" muted loop>
                         <template v-for="video in item.video_info.variants">
                             <source :src="video.url" :type="video.content_type">
                         </template>
