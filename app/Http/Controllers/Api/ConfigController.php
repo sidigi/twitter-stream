@@ -11,11 +11,7 @@ class ConfigController
     public function get(): Config
     {
         return new Config([
-<<<<<<< HEAD
-            'mode' => Option::get('mode')
-=======
             'mode' => Option::getMode()
->>>>>>> images_storage
         ]);
     }
 }
