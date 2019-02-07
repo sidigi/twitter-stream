@@ -1,11 +1,12 @@
 <?php
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Option;
+use App\Models\Option\Option;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class BackgroundImageController extends Controller
 {

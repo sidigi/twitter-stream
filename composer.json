@@ -5,11 +5,12 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.2",
+        "fideloper/proxy": "~4.0",
         "laravel/framework": "5.7.*",
+        "laravelcollective/html": "^5.7",
         "spatie/laravel-twitter-streaming-api": "^1.0",
-        "thujohn/twitter": "~2.0",
-        "fideloper/proxy": "~4.0"
+        "thujohn/twitter": "~2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

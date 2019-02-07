@@ -1,9 +1,10 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Tweet;
+use App\Models\Tweet\Tweet;
 
 class TestController extends Controller
 {

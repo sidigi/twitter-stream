@@ -13,13 +13,13 @@
                                     name="mode"
 
                                     @if($appMode === 'image')
-                                        value="tweet-list"
+                                        value="{{\App\Models\Option\Option::TWEETS_MODE}}"
                                     @else
-                                        value="image"
+                                        value="{{\App\Models\Option\Option::IMAGES_MODE}}"
                                     @endif
 
                                     class="app-mode-image"
-                                    @if($appMode === 'image')
+                                    @if($appMode === \App\Models\Option\Option::IMAGES_MODE)
                                         checked="checked"
                                     @endif
                                 > Show image instead tweets</label>

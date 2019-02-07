@@ -4,33 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ config('app.name', 'EPOCH2018') }}</title>
-    <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('build/index/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div style="height: 100%; width: 100%">
-        <div style="height: 100%; width: 100%" class="app-wrapper">
-            <div class="app-mode" data-app-mode="{{$appMode}}"></div>
-
-            @if ($appMode === 'image' && $appImage)
-                <div class="imgbox">
-                    <img src="{{$appImage}}" alt="" class="center-fit">
-                </div>
-            @else
-                @if ($appMode === 'tweet-list')
-                    @yield('content')
-                @endif
-            @endif
-        </div>
+    <div id="app">
+        <index-page></index-page>
     </div>
-
 
     @if (!auth()->guest())
         <div style="display: block; position: fixed; width: 100px; height: 50px; cursor: pointer; z-index: 222; bottom: 20px; left: 20px">
-            <a href="/admin" class="btn btn-primary">Back to admin panel</a>
+            <a href="{{ route('admin.index') }}" class="btn btn-primary">Back to admin panel</a>
         </div>
     @endif
-
-    <script src="{{ elixir('js/app.js') }}"></script>
+<script src="{{ mix('build/index/js/app.js') }}"></script>
 </body>
 </html>

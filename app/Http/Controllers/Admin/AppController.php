@@ -1,14 +1,16 @@
 <?php
+declare(strict_types = 1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Option;
+use App\Models\Option\Option;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
     public function changeMode(Request $request){
-        $mode = 'tweet-list';
+        $mode = 'tweets';
         if ($request->has('mode')) {
             $mode = $request->mode;
         }
