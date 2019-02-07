@@ -1,20 +1,12 @@
 <?php
-function recursive($array, $needle = 'media', &$arr = [])
-{
-    foreach($array as $key => $value){
-        if(isset($value[$needle]) && $value[$needle]){
-            foreach ($value[$needle] as $item){
-                $arr[$item['id']] = $item;
-            }
-
-        }elseif(is_array($value)){
-            recursive($value, $needle, $arr);
-        }
-    }
-}
+declare(strict_types = 1);
 
 function find_in_arr_recursive(array $arr, string $key) {
     $result = [];
+
+    if(isset($arr['extended_entities'][$key]) && $arr['extended_entities'][$key]){
+        $result += find_in_arr_recursive($arr['extended_entities'], $key);
+    }
 
     if(isset($arr[$key]) && $arr[$key]){
         foreach ($arr[$key] as $item){

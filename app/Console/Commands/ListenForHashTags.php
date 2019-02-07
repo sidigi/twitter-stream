@@ -1,10 +1,10 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Console\Commands;
 
-use App\Tweet;
+use App\Models\Tweet\Tweet;
 use Illuminate\Console\Command;
-use Mockery\Exception;
 use TwitterStreamingApi;
 
 class ListenForHashTags extends Command
