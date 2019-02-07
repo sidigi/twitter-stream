@@ -11,7 +11,18 @@
 		@if($tweet->media)
 			<div class="post-media">
 				@foreach($tweet->media as $media)
-					<img src="{{ $media['media_url'] }}" alt="" class="img-responsive">
+					@if ($media['type'] === 'photo')
+						<img src="{{ $media['media_url'] }}" alt="" class="img-responsive">
+					@endif
+
+					@if ($media['type'] === 'video')
+						<video style="width:600px;max-width:100%;" controls muted>
+							@foreach($media['video_info']['variants'] as $video)
+								<source src="{{$video['url']}}" type="{{$video['content_type']}}">
+							@endforeach
+							Your browser does not support HTML5 video.
+						</video>
+					@endif
 				@endforeach
 			</div>
 		@endif
