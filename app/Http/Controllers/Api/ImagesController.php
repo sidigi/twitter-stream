@@ -13,7 +13,7 @@ class ImagesController
 {
     public function index(Request $request){
         $image = [
-            'url' => Option::get('active-background-image')
+            'url' => Option::get('active-image')
         ];
 
         return [

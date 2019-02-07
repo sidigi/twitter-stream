@@ -69,12 +69,6 @@
 		    </nav>
         @endif
 
-		@if($appMode == 'image')
-			<div class="alert alert-warning" style="margin-top: -25px">
-				<strong>Warning!</strong> Background image is shown instead of tweet list <a href="{{ route('admin.background-images.index') }}">Backgrounds</a>
-			</div>
-		@endif
-
         <div class="container-wide">
 	        <section class="container-fluid">
 				<div class="row">

@@ -22,7 +22,7 @@
                     </div>
                 @endif
 
-                {!! Form::open(['route' => 'admin.background-image.file-upload','enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['route' => 'admin.background-image.store','enctype' => 'multipart/form-data']) !!}
                     <div class="form-group">
                         <label for="">Загрузите изображение</label>
                         {!! Form::file('image', ['class' => 'image']) !!}

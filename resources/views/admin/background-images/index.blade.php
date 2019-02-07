@@ -12,14 +12,14 @@
                                     type="checkbox"
                                     name="mode"
 
-                                    @if($appMode === 'image')
+                                    @if($mode === \App\Models\Option\Option::IMAGES_MODE)
                                         value="{{\App\Models\Option\Option::TWEETS_MODE}}"
                                     @else
                                         value="{{\App\Models\Option\Option::IMAGES_MODE}}"
                                     @endif
 
                                     class="app-mode-image"
-                                    @if($appMode === \App\Models\Option\Option::IMAGES_MODE)
+                                    @if($mode === \App\Models\Option\Option::IMAGES_MODE)
                                         checked="checked"
                                     @endif
                                 > Show image instead tweets</label>
@@ -30,12 +30,12 @@
                 <br><br>
 
                 <div class="images-list">
-                    @foreach($files as $file)
+                    @foreach($images as $image)
                         <div class="card row">
                             <div class="col-xs-8">
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="img-thumbnail media-object" src="{{$file->pathname}}" style="width: 350px">
+                                        <img class="img-thumbnail media-object" src="{{asset('storage/' . $image->path)}}" style="width: 350px">
                                     </div>
                                     <div class="media-body">
                                     </div>
@@ -43,27 +43,22 @@
                             </div>
 
                             <div class="col-xs-4 approval">
-                                <form action="{{ route('admin.background-image.active-image')}}" method="post">
+                                <form action="{{ route('admin.background-image.active')}}" method="post">
                                     <label class="radio-inline">
                                         <input
                                                 type="radio"
-                                                name="pathname"
-                                                value="{{$file->pathname}}"
+                                                name="id"
+                                                value="{{$image->id}}"
                                                 class="active-image"
-                                                @if($file->active)
-                                                checked="checked"
+                                                @if($image->active)
+                                                    checked="checked"
                                                 @endif
                                         >
                                         Active
                                     </label>
                                 </form>
 
-                                <form action="{{ route('admin.background-image.delete-image')}}" method="delete">
-                                    <input
-                                            type="hidden"
-                                            name="pathname"
-                                            value="{{$file->pathname}}"
-                                    >
+                                <form action="{{ route('admin.background-image.destroy', ['image' => $image])}}" method="delete">
                                     <a href="#" style="float: right" class="delete-image">Delete</a>
                                 </form>
                             </div>
