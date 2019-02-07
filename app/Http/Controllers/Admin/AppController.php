@@ -11,8 +11,11 @@ class AppController extends Controller
 {
     public function changeMode(Request $request): void
     {
-        if ($request->has('mode')) {
-            Option::setMode($request->mode);
+        if ($request->has('image-mode')) {
+            Option::setMode(Option::IMAGES_MODE);
+            return;
         }
+
+        Option::setMode(Option::TWEETS_MODE);
     }
 }

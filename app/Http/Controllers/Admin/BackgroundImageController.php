@@ -14,18 +14,12 @@ class BackgroundImageController extends Controller
 {
     public const PUBLIC_BACKGROUND_IMAGES = '/images/backgrounds';
 
-    public function index()
+    public function index(Request $request)
     {
-        $mode =  Option::get('mode');
+        $mode =  Option::getMode();
 
-        $images = Image::all();
-
+        $images = Image::latest()->get();
         return view('admin.background-images.index', compact('images', 'mode'));
-    }
-
-    public function create()
-    {
-        return view('admin.background-images.create');
     }
 
     public function store(Request $request)

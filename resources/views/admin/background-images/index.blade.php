@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+    @include('admin.background-images.parts.create')
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-3">
@@ -10,7 +12,7 @@
                             <label>
                                 <input
                                     type="checkbox"
-                                    name="mode"
+                                    name="image-mode"
 
                                     @if($mode === \App\Models\Option\Option::IMAGES_MODE)
                                         value="{{\App\Models\Option\Option::TWEETS_MODE}}"
@@ -43,7 +45,7 @@
                             </div>
 
                             <div class="col-xs-4 approval">
-                                <form action="{{ route('admin.background-image.active')}}" method="post">
+                                <form action="{{ route('admin.background-image.active', ['image' => $image])}}" method="post">
                                     <label class="radio-inline">
                                         <input
                                                 type="radio"
@@ -58,7 +60,7 @@
                                     </label>
                                 </form>
 
-                                <form action="{{ route('admin.background-image.destroy', ['image' => $image])}}" method="delete">
+                                <form action="{{ route('admin.background-images.destroy', ['image' => $image])}}" method="delete">
                                     <a href="#" style="float: right" class="delete-image">Delete</a>
                                 </form>
                             </div>
