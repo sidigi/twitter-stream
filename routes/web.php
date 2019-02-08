@@ -18,10 +18,12 @@ Route::group([
 
         Route::post('background-images/file-upload', 'BackgroundImageController@store')->name('background-image.store');
 
-        Route::post('background-images/{image}active', 'BackgroundImageController@active')->name('background-image.active');
         Route::resource('background-images', 'BackgroundImageController')->parameters([
             'background-images' => 'image'
         ]);
+
+        Route::resource('content', 'ContentController');
+        Route::resource('video', 'VideoController');
 
         Route::post('app/change-mode', 'AppController@changeMode')->name('app.change-mode');
 });

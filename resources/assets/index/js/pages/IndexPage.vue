@@ -4,9 +4,9 @@
             v-if="isTweetMode"
             :title="title"
         ></tweet-page>
-        <image-page
-            v-if="isImageMode"
-        ></image-page>
+        <content-page
+            v-if="isContentMode"
+        ></content-page>
     </div>
 </template>
 
@@ -27,9 +27,9 @@
             isTweetMode () {
                 return this.$store.getters.mode === 'tweets';
             },
-            isImageMode () {
-                return this.$store.getters.mode === 'images';
-            },
+            isContentMode () {
+                return this.$store.getters.mode === 'content';
+            }
         },
     }
 </script>

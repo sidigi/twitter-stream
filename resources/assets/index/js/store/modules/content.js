@@ -23,7 +23,7 @@ export default {
     },
     actions: {
         getItems(context){
-            axios.get(`/api/images`)
+            axios.get(`/api/content`)
                 .then(res => {
                     context.commit('setItems', res.data.data);
                 })

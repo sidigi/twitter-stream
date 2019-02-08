@@ -1,30 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Models\Image;
+namespace App\Models\Video;
 
 use App\Models\Content\Content;
-use App\Models\Option\Option;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int                 $id
- * @property string              $path
+ * @property string              $url
  */
-class Image extends Model
+class Video extends Model
 {
+    public $table = 'video';
+
     protected $guarded = [];
     protected $casts   = [
         'id'          => 'integer',
     ];
 
-    public static function add(string $path)
-    {
-        Storage::exists($path);
+    public function getVideoIdAttribute(){
+        parse_str( parse_url( $this->url, PHP_URL_QUERY ), $vars );
 
+        return  $vars['v'];
+    }
+
+    public static function add(string $url)
+    {
         return self::create([
-            'path' => $path
+            'url' => $url
         ]);
     }
 

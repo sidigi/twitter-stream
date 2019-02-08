@@ -1,5 +1,5 @@
 import tweets from './modules/tweets';
-import images from './modules/images';
+import content from './modules/content';
 
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
         tweets,
-        images
+        content
     },
 
     state: {
@@ -45,7 +45,7 @@ export default new Vuex.Store({
 
                     if (context.state.mode && context.state.mode !== mode){
                         context.dispatch('tweets/clearInterval');
-                        context.dispatch('images/clearInterval');
+                        context.dispatch('content/clearInterval');
                     }
 
                     context.commit('setMode', mode);

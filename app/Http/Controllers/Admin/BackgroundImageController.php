@@ -45,10 +45,4 @@ class BackgroundImageController extends Controller
         Storage::delete($image->path);
         $image->delete();
     }
-
-    public function active(Request $request): void
-    {
-        $image = Image::findOrFail($request->id);
-        Option::setActiveImage($image->id);
-    }
 }

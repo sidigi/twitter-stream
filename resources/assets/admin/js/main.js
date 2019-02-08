@@ -105,9 +105,6 @@ $(document).on('change', '.app-mode-image', function(event){
         url: form.attr('action'),
         type: form.attr('method'),
         data: form.serialize() + '&_token=' + token,
-        complete: function() {
-            location.reload();
-        }
     });
 
     return false;
