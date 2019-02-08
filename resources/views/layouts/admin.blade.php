@@ -91,8 +91,8 @@
 										</a>
 									</li>
 									<li class="dropdown">
-										<a href="{{ route('images') }}">
-											Images only
+										<a href="{{ route('content') }}">
+											Content only
 										</a>
 									</li>
 								</ul>
