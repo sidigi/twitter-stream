@@ -16,16 +16,11 @@ Route::group([
         Route::get('twitter-api/tweet/{id}', 'TwitterApiController@show')->name('api.twitter.tweet.show');
         Route::get('api/twitter/tweet/{id}', 'TwitterApiController@get')->name('api.twitter.tweet.get');
 
-        Route::post('background-images/file-upload', 'BackgroundImageController@store')->name('background-image.store');
-
-        Route::resource('background-images', 'BackgroundImageController')->parameters([
-            'background-images' => 'image'
-        ]);
-
+        Route::post('content/{content}/mark-default', 'ContentController@markDefault')->name('content.mark-default');
         Route::resource('content', 'ContentController');
-        Route::resource('video', 'VideoController');
 
         Route::post('app/change-mode', 'AppController@changeMode')->name('app.change-mode');
+        Route::post('app/pause-video', 'AppController@pauseVideo')->name('app.pause-video');
 });
 
 Route::group([

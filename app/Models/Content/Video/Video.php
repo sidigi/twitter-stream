@@ -1,16 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Models\Video;
+namespace App\Models\Content\Video;
 
 use App\Models\Content\Content;
+use App\Models\Content\Contentable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property int                 $id
  * @property string              $url
  */
-class Video extends Model
+class Video extends Model implements Contentable
 {
     public $table = 'video';
 
@@ -25,15 +27,15 @@ class Video extends Model
         return  $vars['v'];
     }
 
-    public static function add(string $url)
+    public static function add(string $url): Video
     {
         return self::create([
             'url' => $url
         ]);
     }
 
-    public function content()
+    public function content(): MorphMany
     {
-        return $this->morphMany(Content::class, 'contentable');
+        return $this->morphMany(Content::class, 'content');
     }
 }

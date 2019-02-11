@@ -3,35 +3,30 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\Image as ImageResource;
-use App\Models\Image\Image;
-use App\Models\Option\Option;
+use App\Models\Content\Content;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Resources\Content as ContentResource;
 
 class ContentController
 {
     public function index(Request $request){
-        return ['data' =>
-            [
-                [
-                    'type' => 'video',
-                    'id' => 'FxBfaEKkCYQ',
-                    'show' => true,
-                ],
-                [
-                    'type' => 'image',
-                    'src' => asset('storage/' . Image::whereId(Option::getActiveImageId())->first()->path),
-                    'show' => false,
-                ]
-            ]
-        ];
+        $curDate = Carbon::now();
 
-        /*$images = Image::whereId(Option::getActiveImageId())->get();
+        /** @var Content $content */
+        $content = Content::where('date_from', '<=', $curDate)
+            ->where('date_to', '>', $curDate)
+            ->orderBy('date_from', 'asc')
+            ->first();
 
-        if (!$images->count()){
-            $images = Image::all();
+        if (!$content){
+            $content = Content::whereDefault(true)->first();
         }
 
-        return ImageResource::collection($images);*/
+        if (!$content){
+            $content = Content::select()->first();
+        }
+
+        return new ContentResource($content);
     }
 }

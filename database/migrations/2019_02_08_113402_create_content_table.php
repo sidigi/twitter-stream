@@ -17,8 +17,8 @@ class CreateContentTable extends Migration
             $table->increments('id');
             $table->morphs('content');
             $table->boolean('default')->default(false);
-            $this->timestamp('date_from', 0)->nullable();
-            $this->timestamp('date_to', 0)->nullable();
+            $table->timestamp('date_from', 0)->nullable();
+            $table->timestamp('date_to', 0)->nullable();
             $table->timestamps();
         });
     }

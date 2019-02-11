@@ -1,15 +1,24 @@
 <template>
     <div>
-        <template v-for="(item) in items">
-            <background-image v-if="isImage(item)"
-                v-show="isShow(item)"
-                :key="item.src"
-                :src="item.src"
-            ></background-image>
-            <background-video v-if="isVideo(item)"
-                v-show="isShow(item)"
-                :key="item.id"
-                :video-id="item.id"
+        <background-image v-show="isImage()"
+            :src="item.src"
+        ></background-image>
+
+
+        <template>
+            <section id="home-banner-box" class="home-banner loading" v-show="isVideo()">
+                <div class="image video-slide">
+                    <div class="video-background">
+                        <div class="video-foreground" id="video-player"></div>
+                    </div>
+                </div>
+            </section>
+
+            <background-video
+                v-if="isVideo()"
+                :key="item.video_id"
+                :video-id="item.video_id"
+                :video-mode="item.mode"
             ></background-video>
         </template>
     </div>
@@ -26,25 +35,25 @@
         },
 
         mounted () {
-            this.$store.dispatch('content/getItems');
-            this.$store.dispatch('content/expectItems');
+            this.$store.dispatch('content/getItem');
+            this.$store.dispatch('content/expectItem');
         },
 
         computed: {
-            items(){
-                return this.$store.getters['content/items'];
+            item(){
+                return this.$store.getters['content/item'];
             }
         },
 
         methods: {
-            isImage(item){
-                return item.type === 'image'
+            isImage(){
+                return this.item.type === 'image'
             },
-            isVideo(item){
-                return item.type === 'video'
+            isVideo(){
+                return this.item.type === 'video'
             },
-            isShow(item){
-                return item.show;
+            isShow(){
+                return this.item.show;
             }
         }
     }

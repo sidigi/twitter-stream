@@ -1,11 +1,5 @@
 <template>
-    <section id="home-banner-box" class="home-banner loading">
-        <div class="image video-slide">
-            <div class="video-background">
-                <div class="video-foreground" id="video-player"></div>
-            </div>
-        </div>
-    </section>
+    <div></div>
 </template>
 <script>
     function youTubeSetup() {
@@ -33,7 +27,6 @@
                     onReady: function(e) {
                         e.target.mute();
                         e.target.setPlaybackQuality('hd1080');
-                        window.youtubeAPILoaded = true;
                     },
                     onStateChange: function(e) {
                         if(e && e.data === 1){
@@ -42,7 +35,7 @@
                                 videoHolder.classList.remove('loading');
                             }
                         }else if(e && e.data === 0){
-                            e.target.playVideo()
+                            //e.target.playVideo()
                         }
                     }
                 }
@@ -51,36 +44,41 @@
     }
 
     export default {
-        props: ['videoId'],
+        props: ['videoId', 'videoMode'],
 
         data: function(){
             return {
                 video: null,
+                mode: 'play',
                 interval: null
             }
         },
 
         mounted(){
             this.video = this.videoId;
+            this.mode = this.videoMode;
         },
 
         watch: {
+            mode(){
+
+            },
+
             video(){
                 youTubeSetup();
 
-                clearTimeout(this.interval);
-
-                if (! window.youtubeAPILoaded){
-                    this.interval = setTimeout(() => {
-                        window.player.loadVideoById(this.video);
-                        window.player.stopVideo();
-                        window.player.playVideo();
-                    }, 2000);
+                if (window.player){
+                    window.player.stopVideo();
+                    window.player.loadVideoById(this.video);
+                    window.player.playVideo();
 
                     return;
                 }
 
-                window.player.loadVideoById(this.video);
+                this.interval = setTimeout(() => {
+                    window.player.stopVideo();
+                    window.player.loadVideoById(this.video);
+                }, 2000);
             }
         },
     }

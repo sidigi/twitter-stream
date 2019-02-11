@@ -17,7 +17,11 @@ class Option extends Model
     public const CONTENT_MODE = 'content';
     public const TWEETS_MODE = 'tweets';
 
+    public const VIDEO_PAUSE_MODE = 'paused';
+    public const VIDEO_PLAY_MODE = 'play';
+
     public const MODE_KEY = 'mode';
+    public const VIDEO_KEY = 'video-mode';
     public const DEFAULT_CONTENT_KEY = 'default-content-id';
 
     protected $guarded = [];
@@ -30,6 +34,14 @@ class Option extends Model
         return [
             self::CONTENT_MODE,
             self::TWEETS_MODE,
+        ];
+    }
+
+    public static function getVideoList(): array
+    {
+        return [
+            self::VIDEO_PAUSE_MODE,
+            self::VIDEO_PLAY_MODE,
         ];
     }
 
@@ -48,6 +60,14 @@ class Option extends Model
         }
 
         return self::set(self::MODE_KEY, $mode);
+    }
+
+    public static function setVideoMode($mode){
+        if (! in_array($mode, self::getVideoList(), true)){
+            throw new \DomainException($mode . ' is incorrect video mode');
+        }
+
+        return self::set(self::VIDEO_KEY, $mode);
     }
 
     public static function get(string $key){
@@ -69,5 +89,10 @@ class Option extends Model
     public static function getMode(): ?string
     {
         return self::get(self::MODE_KEY);
+    }
+
+    public static function getVideoMode():string
+    {
+        return self::get(self::VIDEO_KEY) ?: 'play';
     }
 }
