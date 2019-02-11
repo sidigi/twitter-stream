@@ -14,11 +14,15 @@ use Thujohn\Twitter\Facades\Twitter;
  */
 class Option extends Model
 {
-    public const IMAGES_MODE = 'images';
+    public const CONTENT_MODE = 'content';
     public const TWEETS_MODE = 'tweets';
 
+    public const VIDEO_PAUSE_MODE = 'paused';
+    public const VIDEO_PLAY_MODE = 'play';
+
     public const MODE_KEY = 'mode';
-    public const ACTIVE_IMAGE_KEY = 'active-image-id';
+    public const VIDEO_KEY = 'video-mode';
+    public const DEFAULT_CONTENT_KEY = 'default-content-id';
 
     protected $guarded = [];
     protected $casts   = [
@@ -28,8 +32,16 @@ class Option extends Model
     public static function getModeList(): array
     {
         return [
-            self::IMAGES_MODE,
+            self::CONTENT_MODE,
             self::TWEETS_MODE,
+        ];
+    }
+
+    public static function getVideoList(): array
+    {
+        return [
+            self::VIDEO_PAUSE_MODE,
+            self::VIDEO_PLAY_MODE,
         ];
     }
 
@@ -50,24 +62,37 @@ class Option extends Model
         return self::set(self::MODE_KEY, $mode);
     }
 
+    public static function setVideoMode($mode){
+        if (! in_array($mode, self::getVideoList(), true)){
+            throw new \DomainException($mode . ' is incorrect video mode');
+        }
+
+        return self::set(self::VIDEO_KEY, $mode);
+    }
+
     public static function get(string $key){
         $option = self::select('value')->where('key', $key)->first();
 
         return $option ? $option->value : null;
     }
 
-    public static function getActiveImageId(): ?int
+    public static function getActiveContentId(): ?int
     {
-        return (int) self::get(self::ACTIVE_IMAGE_KEY);
+        return (int) self::get(self::DEFAULT_CONTENT_KEY);
     }
 
-    public static function setActiveImage(int $id): void
+    public static function setActiveContent(int $id): void
     {
-        self::set(self::ACTIVE_IMAGE_KEY, (string) $id);
+        self::set(self::DEFAULT_CONTENT_KEY, (string) $id);
     }
 
     public static function getMode(): ?string
     {
         return self::get(self::MODE_KEY);
+    }
+
+    public static function getVideoMode():string
+    {
+        return self::get(self::VIDEO_KEY) ?: 'play';
     }
 }

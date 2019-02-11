@@ -19,6 +19,53 @@
 		    <nav class="navbar navbar-default navbar-static-top">
 			    <div class="container">
 		            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+						<ul class="nav navbar-nav navbar">
+							<li class="dropdown">
+								<form action="{{ route('admin.app.change-mode')}}" method="post" style="padding: 5px 15px;">
+									<div class="checkbox">
+										<label>
+											<input
+												type="checkbox"
+												name="content-mode"
+
+												@if($mode === \App\Models\Option\Option::CONTENT_MODE)
+													value="{{\App\Models\Option\Option::TWEETS_MODE}}"
+												@else
+													value="{{\App\Models\Option\Option::CONTENT_MODE}}"
+												@endif
+
+												class="app-mode-image"
+												@if($mode === \App\Models\Option\Option::CONTENT_MODE)
+													checked="checked"
+												@endif
+											> Show content instead tweets</label>
+									</div>
+								</form>
+							</li>
+							<li class="dropdown">
+								<form action="{{ route('admin.app.pause-video')}}" method="post" style="padding: 5px 15px;">
+									<div class="checkbox">
+										<label>
+											<input
+													type="checkbox"
+													name="pause"
+
+													@if($videoMode === \App\Models\Option\Option::VIDEO_PLAY_MODE)
+													value="{{\App\Models\Option\Option::VIDEO_PAUSE_MODE}}"
+													@else
+													value="{{\App\Models\Option\Option::VIDEO_PLAY_MODE}}"
+													@endif
+
+													class="app-video-mode"
+													@if($videoMode === \App\Models\Option\Option::VIDEO_PAUSE_MODE)
+														checked="checked"
+													@endif
+											> Pause video</label>
+									</div>
+								</form>
+							</li>
+						</ul>
+
                         <ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
 								<a href="{{ route('admin.tweets.index') }}">
@@ -31,10 +78,11 @@
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="{{ route('admin.background-images.index') }}">
-									Background images
+								<a href="{{ route('admin.content.index') }}">
+									Content
 								</a>
 							</li>
+
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Public <span class="caret"></span></a>
 								<ul class="dropdown-menu">
@@ -49,8 +97,8 @@
 										</a>
 									</li>
 									<li class="dropdown">
-										<a href="{{ route('images') }}">
-											Images only
+										<a href="{{ route('content') }}">
+											Content only
 										</a>
 									</li>
 								</ul>

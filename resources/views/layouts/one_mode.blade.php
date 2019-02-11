@@ -14,8 +14,8 @@
             <tweet-page :title="{{ json_encode(config('app.name', 'EPOCH2018')) }}"></tweet-page>
         @endif
 
-        @if ($mode === \App\Models\Option\Option::IMAGES_MODE)
-            <image-page></image-page>
+        @if ($mode === \App\Models\Option\Option::CONTENT_MODE)
+            <content-page></content-page>
         @endif
 
     </div>

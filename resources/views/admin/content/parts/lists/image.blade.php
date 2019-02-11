@@ -1,0 +1,1 @@
+<img class="img-thumbnail media-object" src="{{ asset('storage/' . $item->path) }}" alt="" width="150">

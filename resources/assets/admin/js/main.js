@@ -67,33 +67,22 @@ $(document).on('change', '#auto-reload', function(event){
 
 });
 
-$(document).on('change', '.active-image', function(event){
+$(document).on('change', '.create-content-form #type', function(event){
     event.preventDefault();
 
     var _this = $(this),
-        form = _this.closest('form');
+        form = _this.closest('form'),
+        value = _this.val();
 
-    _this.closest('.images-list').find('input[type="radio"]').prop('checked', false);
-    _this.prop('checked', true);
+    form.find('.show-for').hide();
 
-    $.ajax({
-        url: form.attr('action'),
-        type: form.attr('method'),
-        data: form.serialize() + '&_token=' + token,
-        beforeSend: function() {
-            _this.closest('.card').css({
-                'opacity': '.1',
-            })
-        },
-        complete: function() {
-            _this.closest('.card').css({
-                'opacity': '1',
-            })
-        }
-    });
-
-    return false;
+    form.find('.for-' + value).show();
+    form.find('.for-' + value).show();
 });
+var formTypeInput = $('.create-content-form #type');
+if (formTypeInput.length){
+    formTypeInput.change();
+}
 
 $(document).on('change', '.app-mode-image', function(event){
     event.preventDefault();
@@ -105,9 +94,21 @@ $(document).on('change', '.app-mode-image', function(event){
         url: form.attr('action'),
         type: form.attr('method'),
         data: form.serialize() + '&_token=' + token,
-        complete: function() {
-            location.reload();
-        }
+    });
+
+    return false;
+});
+
+$(document).on('change', '.app-video-mode', function(event){
+    event.preventDefault();
+
+    var _this = $(this),
+        form = _this.closest('form');
+
+    $.ajax({
+        url: form.attr('action'),
+        type: form.attr('method'),
+        data: form.serialize() + '&_token=' + token,
     });
 
     return false;
@@ -185,7 +186,7 @@ $(document).on('click', '.delete-tweet', function(event){
     event.preventDefault();
 });
 
-$(document).on('click', '.delete-image', function(event){
+$(document).on('click', '.delete-content', function(event){
     if (confirm('Are you shure?')){
         var
             _this = $(this),
@@ -245,4 +246,35 @@ $(document).on('keyup', '#tweet', function(){
             $('#result').html($(data).html());
             $('.save-tweet').prop('disabled', false);
         });
-})
+});
+
+
+$(function () {
+    $('.date-input').datetimepicker({
+        format: 'DD-MM-YYYY HH:mm:ss',
+        locale: 'ru',
+    }).on('dp.change', function(e){
+        console.log($(e.currentTarget).val());
+    });
+});
+
+$(document).on('change', '.mark-default', function(event){
+    event.preventDefault();
+
+    var _this = $(this),
+        form = _this.closest('form');
+
+    if (_this.prop('checked')){
+        $('.mark-default').prop('checked', false);
+
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: form.serialize() + '&_token=' + token,
+        });
+    }
+
+    _this.prop('checked', true);
+
+    return false;
+});

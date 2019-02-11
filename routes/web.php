@@ -16,14 +16,11 @@ Route::group([
         Route::get('twitter-api/tweet/{id}', 'TwitterApiController@show')->name('api.twitter.tweet.show');
         Route::get('api/twitter/tweet/{id}', 'TwitterApiController@get')->name('api.twitter.tweet.get');
 
-        Route::post('background-images/file-upload', 'BackgroundImageController@store')->name('background-image.store');
-
-        Route::post('background-images/{image}active', 'BackgroundImageController@active')->name('background-image.active');
-        Route::resource('background-images', 'BackgroundImageController')->parameters([
-            'background-images' => 'image'
-        ]);
+        Route::post('content/{content}/mark-default', 'ContentController@markDefault')->name('content.mark-default');
+        Route::resource('content', 'ContentController');
 
         Route::post('app/change-mode', 'AppController@changeMode')->name('app.change-mode');
+        Route::post('app/pause-video', 'AppController@pauseVideo')->name('app.pause-video');
 });
 
 Route::group([
@@ -31,7 +28,7 @@ Route::group([
 ], function () {
     Route::get('/', 'MainController@index')->name('home');
     Route::get('/tweets', 'TweetController@index')->name('tweets');
-    Route::get('/background-images', 'ImagesController@index')->name('images');
+    Route::get('/content', 'ContentController@index')->name('content');
 });
 
 Auth::routes();

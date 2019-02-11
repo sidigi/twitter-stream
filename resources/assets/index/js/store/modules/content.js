@@ -1,18 +1,18 @@
 export default {
     namespaced: true,
     state: {
-        items: [],
+        item: [],
         expectInterval: null,
         timeOutUpdate: 5000
     },
     getters: {
-        items: state => {
-            return state.items
+        item: state => {
+            return state.item
         }
     },
     mutations: {
-        setItems (state, items) {
-            state.items = items;
+        setItem (state, item) {
+            state.item = item;
         },
         setExpectInterval (state, interval){
             if (state.expectInterval){
@@ -22,15 +22,15 @@ export default {
         }
     },
     actions: {
-        getItems(context){
-            axios.get(`/api/images`)
+        getItem(context){
+            axios.get(`/api/content`)
                 .then(res => {
-                    context.commit('setItems', res.data.data);
+                    context.commit('setItem', res.data.data);
                 })
         },
-        expectItems(context){
+        expectItem(context){
             const interval = setInterval(() => {
-                context.dispatch('getItems');
+                context.dispatch('getItem');
             }, context.state.timeoutUpdate || 5000);
 
             context.commit('setExpectInterval', interval);

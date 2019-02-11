@@ -5,6 +5,6 @@ Route::group([
 ], function () {
     Route::get('/config', 'ConfigController@get')->name('config.get');
     Route::get('/tweets', 'TweetsController@index')->name('tweets.index');
-    Route::get('/images', 'ImagesController@index')->name('images.index');
+    Route::get('/content', 'ContentController@index')->name('content.index');
 });
 

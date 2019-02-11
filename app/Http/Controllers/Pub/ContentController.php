@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Pub;
 
 use App\Http\Controllers\Controller;
 use App\Models\Option\Option;
-use App\Models\Tweet\Tweet;
 
-class ImagesController extends Controller
+class ContentController extends Controller
 {
     public function index()
     {
-        return view('layouts.one_mode', ['mode' => Option::IMAGES_MODE]);
+        return view('layouts.one_mode', ['mode' => Option::CONTENT_MODE]);
     }
 }

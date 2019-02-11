@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Option\Option;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,8 +28,9 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    private function initAppMode()
+    private function initAppMode(): void
     {
-
+        View::share('mode', Option::getMode());
+        View::share('videoMode', Option::getVideoMode());
     }
 }
