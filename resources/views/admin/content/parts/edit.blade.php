@@ -27,13 +27,13 @@
 
                     <div class="form-group {{ $errors->has('date_from') ? 'has-error' :'' }}">
                         <label for="url">Date from</label>
-                        <input type="text" class="form-control date-input" name="date_from" placeholder="Date from" value="{{$content->date_from}}">
+                        <input type="text" class="form-control date-input" name="date_from" placeholder="Date from" value="{{$content->date_from->format('Y-m-d H:i:s')}}">
                         {!! $errors->first('date_from','<span class="help-block">:message</span>') !!}
                     </div>
 
                     <div class="form-group {{ $errors->has('date_to') ? 'has-error' :'' }}">
                         <label for="url">Date to</label>
-                        <input type="text" class="form-control date-input" name="date_to" placeholder="Date to" value="{{$content->date_to}}">
+                        <input type="text" class="form-control date-input" name="date_to" placeholder="Date to" value="{{$content->date_to->format('Y-m-d H:i:s')}}">
                         {!! $errors->first('date_to','<span class="help-block">:message</span>') !!}
                     </div>
 

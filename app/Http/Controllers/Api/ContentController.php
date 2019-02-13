@@ -15,8 +15,8 @@ class ContentController
 
         /** @var Content $content */
         $content = Content::where('date_from', '<=', $curDate)
-            ->where('date_to', '>', $curDate)
-            ->orderBy('date_from', 'asc')
+            ->whereDate('date_to', '>', $curDate)
+            ->orderBy('date_from', 'desc')
             ->first();
 
         if (!$content){
