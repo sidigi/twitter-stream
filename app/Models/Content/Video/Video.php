@@ -22,7 +22,15 @@ class Video extends Model implements Contentable
     ];
 
     public function getVideoIdAttribute(){
-        parse_str( parse_url( $this->url, PHP_URL_QUERY ), $vars );
+        if (strpos((string) $this->url, 'youtu.be') !== false){
+            $parts = explode('/', $this->url);
+            return end($parts);
+        }
+        try{
+            parse_str( parse_url( (string) $this->url, PHP_URL_QUERY ), $vars );
+        }catch(\Exception $e){
+
+        }
 
         return  $vars['v'];
     }
