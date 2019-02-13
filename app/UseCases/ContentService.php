@@ -50,7 +50,7 @@ class ContentService
 
         /** @var Content $content */
         $content = Content::where('date_from', '<=', $curDate)
-            ->whereDate('date_to', '>', $curDate)
+            ->where('date_to', '>', $curDate)
             ->orderBy('date_from', 'desc')
             ->first();
 
