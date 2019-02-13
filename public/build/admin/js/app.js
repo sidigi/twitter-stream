@@ -33444,15 +33444,15 @@ $(document).on('change', '.mark-default', function (event) {
 
   if (_this.prop('checked')) {
     $('.mark-default').prop('checked', false);
-    $.ajax({
-      url: form.attr('action'),
-      type: form.attr('method'),
-      data: form.serialize() + '&_token=' + token
-    });
+
+    _this.prop('checked', true);
   }
 
-  _this.prop('checked', true);
-
+  $.ajax({
+    url: form.attr('action'),
+    type: form.attr('method'),
+    data: form.serialize() + '&_token=' + token
+  });
   return false;
 });
 $(document).on('change', '.mark-immediate', function (event) {

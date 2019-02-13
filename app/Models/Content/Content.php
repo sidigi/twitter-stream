@@ -69,11 +69,11 @@ class Content extends Model
         return $this->morphTo();
     }
 
-    public function markAsDefault(): void
+    public function markAsDefault(bool $default): void
     {
         self::query()->update(['default' => false]);
 
-        $this->default = true;
+        $this->default = $default;
         $this->save();
     }
 
