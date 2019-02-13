@@ -18,7 +18,6 @@
                     controls: 0,
                     showinfo: 0,
                     modestbranding: 1,
-                    loop: 1,
                     fs: 0,
                     rel: 0,
                     enablejsapi: 1
@@ -35,7 +34,7 @@
                                 videoHolder.classList.remove('loading');
                             }
                         }else if(e && e.data === 0){
-                            //e.target.playVideo()
+                            e.target.playVideo() //loop
                         }
                     }
                 }
