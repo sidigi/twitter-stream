@@ -84,22 +84,7 @@ if (formTypeInput.length){
     formTypeInput.change();
 }
 
-$(document).on('change', '.app-mode-image', function(event){
-    event.preventDefault();
-
-    var _this = $(this),
-        form = _this.closest('form');
-
-    $.ajax({
-        url: form.attr('action'),
-        type: form.attr('method'),
-        data: form.serialize() + '&_token=' + token,
-    });
-
-    return false;
-});
-
-$(document).on('change', '.app-video-mode', function(event){
+$(document).on('change', '.app-mode', function(event){
     event.preventDefault();
 
     var _this = $(this),

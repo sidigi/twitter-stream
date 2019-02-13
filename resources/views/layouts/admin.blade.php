@@ -26,15 +26,8 @@
 										<label>
 											<input
 												type="checkbox"
-												name="content-mode"
-
-												@if($mode === \App\Models\Option\Option::CONTENT_MODE)
-													value="{{\App\Models\Option\Option::TWEETS_MODE}}"
-												@else
-													value="{{\App\Models\Option\Option::CONTENT_MODE}}"
-												@endif
-
-												class="app-mode-image"
+												name="tweets_only"
+												class="app-mode"
 												@if($mode === \App\Models\Option\Option::TWEETS_MODE)
 													checked="checked"
 												@endif

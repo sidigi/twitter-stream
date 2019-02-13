@@ -30,7 +30,6 @@ class AppServiceProvider extends ServiceProvider
 
     private function initAppMode(): void
     {
-        View::share('mode', Option::getMode());
-        View::share('videoMode', Option::getVideoMode());
+        View::share('mode', Option::get(Option::MODE_KEY));
     }
 }

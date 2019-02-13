@@ -11,7 +11,7 @@ class AppController extends Controller
 {
     public function changeMode(Request $request): void
     {
-        if ($request->has('content-mode')) {
+        if ($request->has('tweets_only')) {
             Option::setMode(Option::TWEETS_MODE);
             return;
         }
