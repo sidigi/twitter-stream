@@ -18,14 +18,4 @@ class AppController extends Controller
 
         Option::setMode(Option::TWEETS_MODE);
     }
-
-    public function pauseVideo(Request $request): void
-    {
-        if ($request->has('pause')) {
-            Option::setVideoMode(Option::VIDEO_PAUSE_MODE);
-            return;
-        }
-
-        Option::setVideoMode(Option::VIDEO_PLAY_MODE);
-    }
 }

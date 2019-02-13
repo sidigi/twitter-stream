@@ -42,28 +42,6 @@
 									</div>
 								</form>
 							</li>
-							<li class="dropdown">
-								<form action="{{ route('admin.app.pause-video')}}" method="post" style="padding: 5px 15px;">
-									<div class="checkbox">
-										<label>
-											<input
-													type="checkbox"
-													name="pause"
-
-													@if($videoMode === \App\Models\Option\Option::VIDEO_PLAY_MODE)
-													value="{{\App\Models\Option\Option::VIDEO_PAUSE_MODE}}"
-													@else
-													value="{{\App\Models\Option\Option::VIDEO_PLAY_MODE}}"
-													@endif
-
-													class="app-video-mode"
-													@if($videoMode === \App\Models\Option\Option::VIDEO_PAUSE_MODE)
-														checked="checked"
-													@endif
-											> Pause video</label>
-									</div>
-								</form>
-							</li>
 						</ul>
 
                         <ul class="nav navbar-nav navbar-right">

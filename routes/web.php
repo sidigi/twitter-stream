@@ -20,7 +20,6 @@ Route::group([
         Route::resource('content', 'ContentController');
 
         Route::post('app/change-mode', 'AppController@changeMode')->name('app.change-mode');
-        Route::post('app/pause-video', 'AppController@pauseVideo')->name('app.pause-video');
 });
 
 Route::group([
