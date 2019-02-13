@@ -17,6 +17,7 @@ Route::group([
         Route::get('api/twitter/tweet/{id}', 'TwitterApiController@get')->name('api.twitter.tweet.get');
 
         Route::post('content/{content}/mark-default', 'ContentController@markDefault')->name('content.mark-default');
+        Route::post('content/{content}/mark-immediate', 'ContentController@markImmediate')->name('content.mark-immediate');
         Route::resource('content', 'ContentController');
 
         Route::post('app/change-mode', 'AppController@changeMode')->name('app.change-mode');

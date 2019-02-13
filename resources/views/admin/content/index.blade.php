@@ -45,7 +45,16 @@
                                                 <input type="checkbox" name="default" value="1" class="mark-default" {{($item->default) ? 'checked="checked"': ''}} > Mark as default
                                             </label>
                                         </div>
-                                        {!! $errors->first('date_to','<span class="help-block">:message</span>') !!}
+                                    </div>
+                                </form>
+
+                                <form action="{{ route('admin.content.mark-immediate', $item) }}" method="POST">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="immediate" value="1" class="mark-immediate" {{($item->immediate) ? 'checked="checked"': ''}} > Show immediate
+                                            </label>
+                                        </div>
                                     </div>
                                 </form>
 

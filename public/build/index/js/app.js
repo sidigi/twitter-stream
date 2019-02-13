@@ -2077,6 +2077,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+var isModeChange = false;
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     'title': String
@@ -2085,15 +2086,24 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.dispatch('getConfig');
     this.$store.dispatch('expectConfig');
   },
+  watch: {
+    mode: function mode() {
+      if (isModeChange) {
+        location.reload();
+      }
+
+      isModeChange = true;
+    }
+  },
   computed: {
     mode: function mode() {
       return this.$store.getters.mode;
     },
     isTweetMode: function isTweetMode() {
-      return this.$store.getters.mode === 'tweets';
+      return this.mode === 'tweets';
     },
     isContentMode: function isContentMode() {
-      return this.$store.getters.mode === 'content';
+      return this.mode === 'content';
     }
   }
 });

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string              $content_type
  * @property int                 $content_id
  * @property boolean             $default
+ * @property boolean             $immediate
  * @property string              $type
  * @property Carbon              $date_from
  * @property Carbon              $date_to
@@ -76,6 +77,14 @@ class Content extends Model
         $this->save();
     }
 
+    public function markImmediate(bool $immediate): void
+    {
+        self::query()->update(['immediate' => false]);
+
+        $this->immediate = $immediate;
+        $this->save();
+    }
+
     public static function add(Contentable $model, Meta $meta): Content
     {
         $model->save();
@@ -102,4 +111,5 @@ class Content extends Model
 
         parent::delete();
     }
+
 }

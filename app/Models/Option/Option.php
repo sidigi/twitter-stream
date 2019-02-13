@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Models\Option;
 
+use App\UseCases\ContentService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Thujohn\Twitter\Facades\Twitter;
@@ -88,7 +89,19 @@ class Option extends Model
 
     public static function getMode(): ?string
     {
-        return self::get(self::MODE_KEY);
+        $mode = self::get(self::MODE_KEY);
+
+        if ($mode === self::TWEETS_MODE){
+            return $mode;
+        }
+
+        $content = ContentService::guessContent();
+
+        if ($content){
+            return self::CONTENT_MODE;
+        }else{
+            return self::TWEETS_MODE;
+        }
     }
 
     public static function getVideoMode():string

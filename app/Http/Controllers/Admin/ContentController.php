@@ -72,9 +72,14 @@ class ContentController
         return redirect()->route('admin.content.index')->with('success','Content updated successful');
     }
 
-    public function markDefault(Content $content)
+    public function markDefault(Content $content): void
     {
         $content->markAsDefault();
+    }
+
+    public function markImmediate(Content $content, Request $request): void
+    {
+        $content->markImmediate($request->has('immediate'));
     }
 
     public function destroy(Content $content)

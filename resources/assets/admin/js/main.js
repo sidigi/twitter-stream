@@ -276,3 +276,23 @@ $(document).on('change', '.mark-default', function(event){
 
     return false;
 });
+
+$(document).on('change', '.mark-immediate', function(event){
+    event.preventDefault();
+
+    var _this = $(this),
+        form = _this.closest('form');
+
+    if (_this.prop('checked')){
+        $('.mark-immediate').prop('checked', false);
+        _this.prop('checked', true);
+    }
+
+    $.ajax({
+        url: form.attr('action'),
+        type: form.attr('method'),
+        data: form.serialize() + `&_token=${token}`,
+    });
+
+    return false;
+});

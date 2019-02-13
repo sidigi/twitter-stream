@@ -35,10 +35,10 @@
 												@endif
 
 												class="app-mode-image"
-												@if($mode === \App\Models\Option\Option::CONTENT_MODE)
+												@if($mode === \App\Models\Option\Option::TWEETS_MODE)
 													checked="checked"
 												@endif
-											> Show content instead tweets</label>
+											> Show only tweets</label>
 									</div>
 								</form>
 							</li>

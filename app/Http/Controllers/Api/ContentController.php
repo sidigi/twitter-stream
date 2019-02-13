@@ -3,29 +3,14 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Content\Content;
-use Carbon\Carbon;
+use App\UseCases\ContentService;
 use Illuminate\Http\Request;
 use App\Http\Resources\Content as ContentResource;
 
 class ContentController
 {
     public function index(Request $request){
-        $curDate = Carbon::now();
-
-        /** @var Content $content */
-        $content = Content::where('date_from', '<=', $curDate)
-            ->whereDate('date_to', '>', $curDate)
-            ->orderBy('date_from', 'desc')
-            ->first();
-
-        if (!$content){
-            $content = Content::whereDefault(true)->first();
-        }
-
-        if (!$content){
-            $content = Content::select()->first();
-        }
+        $content = ContentService::guessContent();
 
         return new ContentResource($content);
     }

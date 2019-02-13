@@ -12,10 +12,10 @@ class AppController extends Controller
     public function changeMode(Request $request): void
     {
         if ($request->has('content-mode')) {
-            Option::setMode(Option::CONTENT_MODE);
+            Option::setMode(Option::TWEETS_MODE);
             return;
         }
 
-        Option::setMode(Option::TWEETS_MODE);
+        Option::setMode(Option::CONTENT_MODE);
     }
 }

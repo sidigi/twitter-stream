@@ -7,6 +7,7 @@ use App\Models\Content\Content;
 use App\Models\Content\Image\Image;
 use App\Models\Content\Meta;
 use App\Models\Content\Video\Video;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ContentService
@@ -36,5 +37,27 @@ class ContentService
         $content = Content::findOrFail($contentId);
 
         $content->delete();
+    }
+
+    public static function guessContent(): ?Content
+    {
+        $curDate = Carbon::now();
+
+        $content = Content::whereImmediate(true)->first();
+        if ($content){
+            return $content;
+        }
+
+        /** @var Content $content */
+        $content = Content::where('date_from', '<=', $curDate)
+            ->whereDate('date_to', '>', $curDate)
+            ->orderBy('date_from', 'desc')
+            ->first();
+
+        if (!$content){
+            $content = Content::whereDefault(true)->first();
+        }
+
+        return $content;
     }
 }
