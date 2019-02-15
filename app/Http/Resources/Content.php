@@ -51,7 +51,6 @@ class Content extends JsonResource
     {
         return [
             'video_id' => $this->content->videoId,
-            'mode' => Option::getVideoMode()
         ];
     }
 }
