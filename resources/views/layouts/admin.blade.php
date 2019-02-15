@@ -103,7 +103,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="text-center">
-							<h1>#PRCRussiaCIS2018</h1>
+							<h1>#{{config('app.name')}}</h1>
 						</div>
 					</div>
 				</div>

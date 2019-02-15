@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="app">
-        <index-page :title="{{ json_encode(config('app.name', 'EPOCH2018')) }}"></index-page>
+        <index-page :title="{{ json_encode('#' . config('app.name')) }}"></index-page>
     </div>
 
     @if (!auth()->guest())
