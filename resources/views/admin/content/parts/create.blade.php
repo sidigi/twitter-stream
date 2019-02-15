@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-3">
+            <div class="alert alert-info">
+                Now: {{ \Carbon\Carbon::now() }}
+            </div>
 
             @if (\Session::has('success'))
                 <div class="alert alert-success">

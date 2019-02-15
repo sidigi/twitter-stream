@@ -6,6 +6,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-3">
 
+                <div class="alert alert-info">
+                    Now: {{ \Carbon\Carbon::now() }}
+                </div>
+
                 @if (\Session::has('success'))
                     <div class="alert alert-success">
                         <strong>Success!</strong> {!! \Session::get('success') !!}. See on <a href="{{ route('admin.content.index') }}">Backgrounds</a>
