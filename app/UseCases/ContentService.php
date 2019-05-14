@@ -14,7 +14,7 @@ class ContentService
 {
     public function createVideo(string $url, Meta $meta): void
     {
-        DB::transaction(function () use ($url, $meta){
+        DB::transaction(static function () use ($url, $meta){
             /** @var Video $video */
             $video = Video::add($url);
 
