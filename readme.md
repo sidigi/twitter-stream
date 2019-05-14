@@ -19,8 +19,8 @@
 
 4) `composer install`
 5) `php artisan migrate:refresh --seed` (база данных должна поддерживать emoji)
-6) `php artisan shedule:run` - запуск задач из командной строки или `* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1` - на крон
-`php artisan shedule:run &` - запуск в фоне 
+6) `php artisan schedule:run` - запуск задач из командной строки или `* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1` - на крон
+`php artisan schedule:run &!` - запуск в фоне
 7) `/login` для менеджера (кто модерирует твиты)
 
 * email: manager@manager.com
