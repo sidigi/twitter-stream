@@ -42,7 +42,7 @@
                 }
             },
             humanDate(){
-                return moment(this.createdAt.date).fromNow()
+                return moment(this.createdAt).fromNow()
             }
         },
 
