@@ -30,7 +30,7 @@
         props: {
             avatarUrl : String,
             userName : String,
-            createdAt : Object,
+            createdAt : [String, Object],
             media : Array,
             text : String,
         },
