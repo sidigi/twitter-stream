@@ -2161,15 +2161,13 @@ __webpack_require__.r(__webpack_exports__);
     title: String,
     sponsor: Object
   },
+  data: function data() {
+    return {
+      param: 2
+    };
+  },
   components: {
     TweetList: _components_TweetList__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  computed: {
-    param: function param() {
-      var uri = window.location.search.substring(1);
-      var params = new URLSearchParams(uri);
-      return params.get("test");
-    }
   }
 });
 
@@ -36476,7 +36474,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "row" }, [
-          _vm.param === "1"
+          _vm.param == "1"
             ? _c("div", { staticClass: "col-md-12" }, [
                 _c("div", { staticClass: "text-center" }, [
                   _c("h1", [
@@ -36495,7 +36493,7 @@ var render = function() {
                   ])
                 ])
               ])
-            : _vm.param === "2"
+            : _vm.param == "2"
             ? _c("div", { staticClass: "col-md-12" }, [
                 _c("div", { staticClass: "box" }, [
                   _c("div", { staticClass: "item1" }, [
