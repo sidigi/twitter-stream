@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         @if ($mode === \App\Models\Option\Option::TWEETS_MODE)
-            <tweet-page :title="{{ json_encode(config('app.name', 'EPOCH2018')) }}"></tweet-page>
+            <tweet-page :title="{{ json_encode(config('app.name', 'EPOCH2018')) }}" :sponsor="{{ json_encode(config('laravel-twitter-streaming-api.sponsor')) }}"></tweet-page>
         @endif
 
         @if ($mode === \App\Models\Option\Option::CONTENT_MODE)
