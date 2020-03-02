@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 
 use App\Models\Tweet\Tweet;
 use Illuminate\Console\Command;
-use TwitterStreamingApi;
 
 class ListenForHashTags extends Command
 {
@@ -31,11 +30,11 @@ class ListenForHashTags extends Command
     public function handle()
     {
         TwitterStreamingApi::publicStream()
-            ->whenHears(config('laravel-twitter-streaming-api.hash'), function (array $tweet) {
-                $tweet_text = isset($tweet['text']) ? $tweet['text'] : null;
-                $user_id = isset($tweet['user']['id_str']) ? $tweet['user']['id_str'] : null;
-                $user_screen_name = isset($tweet['user']['screen_name']) ? $tweet['user']['screen_name'] : null;
-                $user_avatar_url = isset($tweet['user']['profile_image_url_https']) ? $tweet['user']['profile_image_url_https'] : null;
+            ->whenHears(config('laravel-twitter-streaming-api.hash'), static function (array $tweet) {
+                $tweet_text = $tweet['text'] ?? null;
+                $user_id = $tweet['user']['id_str'] ?? null;
+                $user_screen_name = $tweet['user']['screen_name'] ?? null;
+                $user_avatar_url = $tweet['user']['profile_image_url_https'] ?? null;
 
                 if (isset($tweet['id'])) {
                     Tweet::updateOrCreate(

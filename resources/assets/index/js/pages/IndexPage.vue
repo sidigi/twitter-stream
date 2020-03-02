@@ -3,6 +3,7 @@
         <tweet-page
             v-if="isTweetMode"
             :title="title"
+            :sponsor="sponsor"
         ></tweet-page>
         <content-page
             v-if="isContentMode"
@@ -15,7 +16,8 @@
 
     export default {
         props: {
-            'title': String
+            title: String,
+            sponsor: Object
         },
 
         mounted () {

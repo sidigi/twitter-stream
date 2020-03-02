@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="app">
-        <index-page :title="{{ json_encode('#' . config('app.name')) }}"></index-page>
+        <index-page :title="{{ json_encode('#' . config('app.name')) }}" :sponsor="{{ json_encode(config('laravel-twitter-streaming-api.sponsor')) }}"></index-page>
     </div>
 
     @if (!auth()->guest())

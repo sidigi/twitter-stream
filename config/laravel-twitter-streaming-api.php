@@ -37,5 +37,9 @@ return [
         '#LNGonelove',
         '#LNGinfluencers',
         '#LNGforever',
+    ],
+
+    'sponsor' => [
+        'logo' => '/images/sponsor/logo.png',
     ]
 ];
