@@ -38,10 +38,6 @@ class Tweet extends Model
         static::addGlobalScope('latest', static function (Builder $builder) {
             $builder->orderBy('created_at','desc');
         });
-
-        static::addGlobalScope('unique_id', static function (Builder $builder) {
-            $builder->groupBy('id');
-        });
     }
 
     public function getMediaAttribute()
