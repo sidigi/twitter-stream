@@ -1,4 +1,4 @@
-`git clone git@github.com:SidiGi/twitter-stream.git`
+`git clone git@github.com:sidigi/twitter-stream.git`
 
 1) Создать приложение twitter app
 2) Заполнить в env:
