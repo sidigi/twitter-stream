@@ -17,24 +17,20 @@ return [
     'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
 
     'hash' => [
-        '#AUTOMA2021',
-        '#AUTOMA',
-        '#AUTOMAcongress',
-        '#AUTOMAGalaDinner',
-        '#AUTOMAGalaDinner2021',
-        '#AUTOMAGala',
-        '#AUTOMAGala2021',
-        '#BGSgroup',
-        '#RideTheDigitalWave',
-        '#DigitalGeek',
-        '#ThinkDigital',
-        '#DigitalSustainability',
-        '#Diorama',
-        '#OMVPetrom',
-        '#MicrosoftRomania',
+        '#LNGCON2022',
+	'#LNGCON',
+	'#bgs',
+	'#BGSGroup',
+	'#LNG2022',
+	'#LNGCongress',
+	'#TasteNetworking',
+	'#LNGgaladinner',
+	'#LNGforever',
+	'#FuellingIndustry',
+	'#LNGpower'
     ],
 
     'sponsor' => [
-        'logo' => '',
+        'logo' => '/images/sponsor/logo.jpeg',
     ]
 ];

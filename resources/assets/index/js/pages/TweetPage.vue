@@ -13,7 +13,7 @@
         <div class="col-md-12" v-else-if="param == '2'">
           <div class="box">
             <div class="item1">
-              <h1>Twitter stream <b v-text="title"></b></h1>
+              <h1>Join Twitter Stream: add <b v-text="title"></b> to your tweet!</h1>
             </div>
             <div class="item2" v-if="sponsor.logo">
               <div class="text-left" style="font-size: 14px">Sponsored by</div>
@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-12" v-else>
           <div class="text-center">
-            <h1>Twitter stream <b v-text="title"></b></h1>
+            <h1>Join Twitter Stream: add <b v-text="title"></b> to your tweet!</h1>
           </div>
         </div>
       </div>
