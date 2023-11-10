@@ -1,0 +1,14 @@
+Running scheduled command: '/usr/bin/php7.4' 'artisan' twitter:listen-for-hash-tags >> '/var/www/twitter/storage/logs/twitter-stream.log' 2>&1
+
+In Process.php line 441:
+                                                  
+  The process has been signaled with signal "1".  
+                                                  
+
+Running scheduled command: '/usr/bin/php7.4' 'artisan' twitter:listen-for-hash-tags >> '/var/www/twitter/storage/logs/twitter-stream.log' 2>&1
+
+In Process.php line 441:
+                                                  
+  The process has been signaled with signal "1".  
+                                                  
+

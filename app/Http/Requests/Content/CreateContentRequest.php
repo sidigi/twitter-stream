@@ -27,7 +27,7 @@ class CreateContentRequest extends FormRequest
             'type' => 'required|in:image,video',
             'date_from' => 'required|date|before:date_to',
             'date_to' => 'required|date|after:date_from',
-            'image' => 'required_if:type,image|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'required_if:type,image',//|image|mimes:jpeg,png,jpg,gif,svg', try fix it later
             'url' => 'required_if:type,video|url',
         ];
     }

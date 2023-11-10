@@ -6,7 +6,7 @@
           <div class="text-center" v-if="sponsor.logo">
             <h1>
               Twitter stream <b v-text="title"></b> Sponsored by
-              <img :src="sponsor.logo" alt="" height="80px" />
+              <img :src="sponsor.logo" alt="" height="40px" />
             </h1>
           </div>
         </div>
@@ -21,7 +21,7 @@
                 v-if="sponsor.logo"
                 :src="sponsor.logo"
                 alt=""
-                height="60px"
+                height="40px"
               />
             </div>
           </div>

@@ -17,20 +17,20 @@ return [
     'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
 
     'hash' => [
-        '#LNGCON2022',
-	'#LNGCON',
-	'#bgs',
-	'#BGSGroup',
-	'#LNG2022',
-	'#LNGCongress',
-	'#TasteNetworking',
-	'#LNGgaladinner',
-	'#LNGforever',
-	'#FuellingIndustry',
-	'#LNGpower'
+'#bgs',
+'#BGSGroup',
+'#PRC',
+'#PRCEurope',
+'#PRCEurope2023',
+'#PRC2023',
+'#PRCGalaDinner',
+'#RefinetheIndustry',
+'#WineDine&Refine',
+'#RecyclingReprocessingRefining',
+'#ThinkGreen'
     ],
 
     'sponsor' => [
-        'logo' => '/images/sponsor/logo.jpeg',
+        'logo' => '/images/sponsor/sponsor.png',
     ]
 ];
